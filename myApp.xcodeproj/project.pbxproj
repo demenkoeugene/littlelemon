@@ -11,6 +11,10 @@
 		F62FC8332A326FE3000868D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FC8322A326FE3000868D1 /* ContentView.swift */; };
 		F62FC8352A326FE3000868D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8342A326FE3000868D1 /* Assets.xcassets */; };
 		F62FC8382A326FE3000868D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */; };
+		F6A2C0B22A34FBB5005E31D4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B02A34FBB5005E31D4 /* Model.xcdatamodeld */; };
+		F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */; };
+		F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */; };
+		F6BDE2242A3670AA00FCE795 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,11 @@
 		F62FC8322A326FE3000868D1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F62FC8342A326FE3000868D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F6A2C0B12A34FBB5005E31D4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		F6BDE21E2A366CBC00FCE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarkaziText2.ttf; sourceTree = "<group>"; };
+		F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Karla-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +60,12 @@
 		F62FC82F2A326FE3000868D1 /* myApp */ = {
 			isa = PBXGroup;
 			children = (
+				F6BDE21E2A366CBC00FCE795 /* Info.plist */,
+				F6BDE2222A36705900FCE795 /* font */,
 				F62FC8302A326FE3000868D1 /* myAppApp.swift */,
 				F62FC8322A326FE3000868D1 /* ContentView.swift */,
+				F6A2C0B02A34FBB5005E31D4 /* Model.xcdatamodeld */,
+				F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */,
 				F62FC8342A326FE3000868D1 /* Assets.xcassets */,
 				F62FC8362A326FE3000868D1 /* Preview Content */,
 			);
@@ -65,6 +78,15 @@
 				F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F6BDE2222A36705900FCE795 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */,
+				F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */,
+			);
+			path = font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +147,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */,
 				F62FC8382A326FE3000868D1 /* Preview Assets.xcassets in Resources */,
 				F62FC8352A326FE3000868D1 /* Assets.xcassets in Resources */,
+				F6BDE2242A3670AA00FCE795 /* Karla-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +163,8 @@
 			files = (
 				F62FC8332A326FE3000868D1 /* ContentView.swift in Sources */,
 				F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */,
+				F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */,
+				F6A2C0B22A34FBB5005E31D4 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +296,7 @@
 				DEVELOPMENT_TEAM = 9495ZGT5QK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = myApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +326,7 @@
 				DEVELOPMENT_TEAM = 9495ZGT5QK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = myApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +367,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F6A2C0B02A34FBB5005E31D4 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F6A2C0B12A34FBB5005E31D4 /* Model.xcdatamodel */,
+			);
+			currentVersion = F6A2C0B12A34FBB5005E31D4 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F62FC8252A326FE3000868D1 /* Project object */;
 }
