@@ -24,21 +24,14 @@ struct Onboarding: View {
     @State private var email = ""
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack {
                 if isImageVisible {
                     Logo()
                         .transition(.opacity)
                         .offset(y: isImageVisible ? -45 : 0)
                 }
-                NavigationLink(
-                    destination: Home(),
-                    isActive: $isLoggedIn,
-                    label: {
-                        EmptyView()
-                            .hidden()
-                    }
-                )
+
                 if isFormView {
                     ViewForm(
                         firstName: $firstName,
@@ -46,6 +39,9 @@ struct Onboarding: View {
                         email: $email,
                         isLoggedIn: $isLoggedIn)
                 }
+            }
+            .navigationDestination(isPresented: $isLoggedIn) {
+               Home()
             }
             .onAppear {
                 withAnimation(.easeInOut(duration: 0.1)) {
@@ -58,6 +54,7 @@ struct Onboarding: View {
                 }
             }
         }
+        
         .onAppear {
             if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
                 isLoggedIn = true
