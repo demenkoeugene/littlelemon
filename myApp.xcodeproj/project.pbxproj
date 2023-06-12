@@ -15,6 +15,9 @@
 		F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */; };
 		F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */; };
 		F6BDE2242A3670AA00FCE795 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */; };
+		F6BDE2262A3728FE00FCE795 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE2252A3728FE00FCE795 /* Home.swift */; };
+		F6BDE2282A37294200FCE795 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE2272A37294200FCE795 /* Menu.swift */; };
+		F6BDE22B2A37486B00FCE795 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE22A2A37486B00FCE795 /* UserProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		F6BDE21E2A366CBC00FCE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarkaziText2.ttf; sourceTree = "<group>"; };
 		F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Karla-Regular.ttf"; sourceTree = "<group>"; };
+		F6BDE2252A3728FE00FCE795 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		F6BDE2272A37294200FCE795 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		F6BDE22A2A37486B00FCE795 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +71,7 @@
 				F62FC8302A326FE3000868D1 /* myAppApp.swift */,
 				F62FC8322A326FE3000868D1 /* ContentView.swift */,
 				F6A2C0B02A34FBB5005E31D4 /* Model.xcdatamodeld */,
-				F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */,
+				F6BDE2292A37294B00FCE795 /* View */,
 				F62FC8342A326FE3000868D1 /* Assets.xcassets */,
 				F62FC8362A326FE3000868D1 /* Preview Content */,
 			);
@@ -87,6 +93,17 @@
 				F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */,
 			);
 			path = font;
+			sourceTree = "<group>";
+		};
+		F6BDE2292A37294B00FCE795 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6BDE2252A3728FE00FCE795 /* Home.swift */,
+				F6BDE2272A37294200FCE795 /* Menu.swift */,
+				F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */,
+				F6BDE22A2A37486B00FCE795 /* UserProfile.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6BDE2282A37294200FCE795 /* Menu.swift in Sources */,
 				F62FC8332A326FE3000868D1 /* ContentView.swift in Sources */,
+				F6BDE22B2A37486B00FCE795 /* UserProfile.swift in Sources */,
 				F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */,
+				F6BDE2262A3728FE00FCE795 /* Home.swift in Sources */,
 				F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */,
 				F6A2C0B22A34FBB5005E31D4 /* Model.xcdatamodeld in Sources */,
 			);

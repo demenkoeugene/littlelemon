@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let kIsLoggedIn = "kIsLoggedIn"
+
 let kFirstName = "first name key"
 let kLastName = "last name key"
 let kEmail = "email key"
@@ -15,31 +17,51 @@ struct Onboarding: View {
     @State private var isImageVisible = false
     @State private var isFormView = false
     
+    @State private var isLoggedIn = false
+    
     @State private var firstName = ""
     @State private var lastNme = ""
     @State private var email = ""
     
     var body: some View {
-        VStack {
-            if isImageVisible {
-                Logo()
-                    .transition(.opacity)
-                    .offset(y: isFormView ? -25 : 0)
-            }
-            ZStack{
+        NavigationView{
+            VStack {
+                if isImageVisible {
+                    Logo()
+                        .transition(.opacity)
+                        .offset(y: isImageVisible ? -45 : 0)
+                }
+                NavigationLink(
+                    destination: Home(),
+                    isActive: $isLoggedIn,
+                    label: {
+                        EmptyView()
+                            .hidden()
+                    }
+                )
                 if isFormView {
-                    ViewForm(firstName: $firstName, lastName: $lastNme, email: $email)
+                    ViewForm(
+                        firstName: $firstName,
+                        lastName: $lastNme,
+                        email: $email,
+                        isLoggedIn: $isLoggedIn)
+                }
+            }
+            .onAppear {
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    isImageVisible = true
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation(.easeInOut(duration: 0.7)) {
+                        isFormView = true
+                    }
                 }
             }
         }
         .onAppear {
-            withAnimation(.easeInOut(duration: 0.7)) {
-                isImageVisible = true
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                withAnimation(.easeInOut(duration: 0.7)) {
-                    isFormView = true
-                }
+            if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
+                isLoggedIn = true
+               
             }
         }
     }
@@ -49,6 +71,15 @@ struct ViewForm: View{
     @Binding var firstName: String
     @Binding var lastName: String
     @Binding var email: String
+    @Binding var isLoggedIn: Bool
+    @State var isPressed: Bool = false
+    
+    init(firstName: Binding<String>, lastName: Binding<String>, email: Binding<String>, isLoggedIn: Binding<Bool>) {
+        self._firstName = firstName
+        self._lastName = lastName
+        self._email = email
+        self._isLoggedIn = isLoggedIn
+    }
     
     var body: some View{
         VStack{
@@ -72,16 +103,19 @@ struct ViewForm: View{
                     .cornerRadius(10)
                 VStack{
                     Button("Register"){
+                        isPressed.toggle()
                         if !firstName.isEmpty && !lastName.isEmpty && !email.isEmpty {
+                            UserDefaults.standard.set(true, forKey: kIsLoggedIn)
                             UserDefaults.standard.set(firstName, forKey: kFirstName)
                             UserDefaults.standard.set(lastName, forKey: kLastName)
                             UserDefaults.standard.set(email, forKey: kEmail)
+                            isLoggedIn = true
                         }
                     }
                     .font(.custom("Karla", size: 24))
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
-                    .background(Color("#495E57"))
+                    .background(isPressed ? Color("#F4CE14") : Color("#495E57") )
                     .cornerRadius(10)
                 }
                 .font(.custom("Karla", size: 18))
