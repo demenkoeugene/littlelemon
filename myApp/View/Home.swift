@@ -13,6 +13,7 @@ struct Home: View {
     var body: some View {
         TabView{
             Menu()
+                .environment(\.managedObjectContext, persistence.container.viewContext)
                 .tabItem {
                     Label("Menu", systemImage: "list.dash")
                 }
@@ -21,9 +22,9 @@ struct Home: View {
                     Label("Profile", systemImage: "square.and.pencil")
                 }
         }
-        .environment(\.managedObjectContext, persistence.container.viewContext)
         .navigationBarBackButtonHidden(true)
     }
+    
 }
 
 struct Home_Previews: PreviewProvider {

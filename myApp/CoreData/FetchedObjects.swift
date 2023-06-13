@@ -2,7 +2,7 @@ import CoreData
 import Foundation
 import SwiftUI
 
-struct FetchedObjects<T, Content>: View where T : NSManagedObject, Content: View {
+struct FetchedObjects<T, Content>: View where T : NSManagedObject, Content : View {
     
   let content: ([T]) -> Content
 

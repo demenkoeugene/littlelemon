@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
     
+
+   
+    
     var body: some View {
-        VStack{
+        VStack {
             Text("My Restaurant App")
                 .font(.title)
                 .padding(.top, 16)
@@ -21,21 +25,29 @@ struct Menu: View {
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
-            List {
-                // Placeholder list items
-                Text("Menu Item 1")
-                Text("Menu Item 2")
-                Text("Menu Item 3")
-                
+            FetchedObjects { (dishes: [DishEntity]) in
+                    List {
+                        ForEach(dishes) { dish in
+                            HStack {
+                                Text("\(dish.title ?? "") -- \(dish.price ?? "") ")
+                                AsyncImage(url: URL(string: dish.image!)) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 100, height: 100)
+                            }
+                        }
+                }
             }
         }
         .onAppear {
             getMenuData()
         }
-        
     }
-    
+      
     func getMenuData() {
+        PersistenceController.shared.clear()
         let serverURLString = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
         let url = URL(string: serverURLString)
         guard let url = url else {
@@ -49,6 +61,14 @@ struct Menu: View {
                 do {
                     let decoder = JSONDecoder()
                     let menuList = try decoder.decode(MenuList.self, from: data)
+                    
+                    for menuItem in menuList.menu {
+                        let dish = DishEntity(context: viewContext)
+                        dish.title = menuItem.title
+                        dish.price = menuItem.price
+                        dish.image = menuItem.image
+                    }
+                    try? viewContext.save()
                 } catch {
                     print("Error decoding menu data: \(error)")
                 }
@@ -65,3 +85,4 @@ struct Menu_Previews: PreviewProvider {
         Menu()
     }
 }
+
