@@ -10,7 +10,7 @@ import CoreData
 
 struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @State var searchText = ""
 
    
     
@@ -25,7 +25,11 @@ struct Menu: View {
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
-            FetchedObjects { (dishes: [DishEntity]) in
+            TextField("Search menu", text: $searchText)
+            FetchedObjects(
+                predicate: buildPredicate(),
+                sortDescriptors: buildSortDescriptors()
+            ) { (dishes: [DishEntity]) in
                     List {
                         ForEach(dishes) { dish in
                             HStack {
@@ -45,7 +49,19 @@ struct Menu: View {
             getMenuData()
         }
     }
-      
+    
+    func buildSortDescriptors() -> [NSSortDescriptor] {
+            return [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare))]
+    }
+    func buildPredicate() -> NSPredicate {
+        if !searchText.isEmpty {
+            return NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+        } else {
+            return NSPredicate(value: true)
+        }
+    }
+
+    
     func getMenuData() {
         PersistenceController.shared.clear()
         let serverURLString = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
