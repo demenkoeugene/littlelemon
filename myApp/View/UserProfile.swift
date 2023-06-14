@@ -17,15 +17,29 @@ struct UserProfile: View {
     
     var body: some View {
         VStack{
-            Text("Personal information")
-            Image("profile-image-placeholder")
+            Image("logo2")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100)
-                .cornerRadius(180)
-            Text("Your name: \(firstName)")
-            Text("Your lastName: \(lastName)")
-            Text("Your email: \(email)")
+                .frame(width: 150, height: 50)
+            
+            Text("Personal information")
+                .font(.custom("Markazi Text", size: 30))
+                .multilineTextAlignment(.leading)
+            Spacer()
+            HStack{
+                Image("profile-image-placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(180)
+                VStack(alignment: .leading){
+                    Text("\(firstName) \(lastName)")
+                        .font(.custom("Karla", size: 28))
+                    Text("\(email)")
+                        .font(.custom("Karla", size: 14))
+                        .foregroundColor(Color("#EDEFEE"))
+                }
+            }
             Button("Log out"){
                 UserDefaults.standard.set(false, forKey: kIsLoggedIn)//?
                 self.presentation.wrappedValue.dismiss()
@@ -35,6 +49,7 @@ struct UserProfile: View {
             .background(Color("#F4CE14"))
             .cornerRadius(10)
             .frame(width: 300, height: 50)
+            Spacer()
         }
         
     }

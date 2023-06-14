@@ -98,6 +98,7 @@ struct ViewForm: View{
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
+                    
                 VStack{
                     Button("Register"){
                         isPressed.toggle()

@@ -26,23 +26,24 @@ struct Menu: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             TextField("Search menu", text: $searchText)
+                .padding([.leading, .trailing], 30)
             FetchedObjects(
                 predicate: buildPredicate(),
                 sortDescriptors: buildSortDescriptors()
             ) { (dishes: [DishEntity]) in
-                    List {
+              
+                    ScrollView {
                         ForEach(dishes) { dish in
-                            HStack {
-                                Text("\(dish.title ?? "") -- \(dish.price ?? "") ")
-                                AsyncImage(url: URL(string: dish.image!)) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
+                            NavigationLink(destination: MenuItemDetailsView(menuItem: dish)){
+                                VStack {
+                                    MenuCardView(dish: dish)
+                                    Divider()
+                                        .padding([.leading, .trailing], 30)
                                 }
-                                .frame(width: 100, height: 100)
+                               
                             }
                         }
-                }
+                    }
             }
         }
         .onAppear {
@@ -83,6 +84,7 @@ struct Menu: View {
                         dish.title = menuItem.title
                         dish.price = menuItem.price
                         dish.image = menuItem.image
+                        dish.descriptionItem = menuItem.descriptionItem
                     }
                     try? viewContext.save()
                 } catch {
@@ -92,13 +94,47 @@ struct Menu: View {
         }
         task.resume()
     }
-    
-    
 }
+
+struct MenuCardView: View{
+    var dish: DishEntity
+
+    var body: some View{
+        HStack{
+            VStack(alignment: .leading){
+                Text(dish.title!)
+                    .font(.custom("Karla", size: 18))
+                Text(dish.descriptionItem ?? "error" )
+                    .foregroundColor(Color("#495E57"))
+                    .padding([.top, .bottom], 2)
+                    .multilineTextAlignment(.leading)
+                Text("\(dish.price!)$")
+                    .foregroundColor(Color("#495E57"))
+            }
+            .font(.custom("Karla", size: 14))
+            Spacer()
+            AsyncImage(url: URL(string: dish.image!)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 80, height: 80)
+                    .cornerRadius(0)
+                } placeholder: {
+                    ProgressView()
+                }
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 80, height: 80)
+        }
+        .foregroundColor(.black)
+        .padding([.leading, .trailing], 30)
+    }
+}
+
 
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
         Menu()
     }
 }
+
 
