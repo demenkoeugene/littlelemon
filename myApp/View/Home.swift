@@ -15,12 +15,12 @@ struct Home: View {
             Menu()
                 .environment(\.managedObjectContext, persistence.container.viewContext)
                 .tabItem {
-                    Label("Menu", systemImage: "list.dash")
+                    Label("Menu", systemImage: "fork.knife.circle")
                 }
             UserProfile()
                 .navigationTitle("Personal Information")
                 .tabItem {
-                    Label("Profile", systemImage: "square.and.pencil")
+                    Label("Profile", systemImage: "person")
                 }
                
         }

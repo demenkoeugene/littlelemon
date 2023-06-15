@@ -23,6 +23,7 @@ struct FoodMenuList: View{
                     .foregroundColor(Color("#495E57"))
             }
             .font(.custom("Karla", size: 14))
+            .padding([.top, .bottom], 10)
             Spacer()
             AsyncImage(url: URL(string: dish.image!)) { image in
                 image

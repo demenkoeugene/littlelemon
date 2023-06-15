@@ -10,7 +10,13 @@ import CoreData
 
 struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
-  
+    
+    @State var startersIsEnabled = true
+    @State var mainsIsEnabled = true
+    @State var dessertsIsEnabled = true
+    @State var drinksIsEnabled = true
+    
+    
     @State var isLoaded = false
     @State var searchText = ""
     private var home = Home()
@@ -19,6 +25,8 @@ struct Menu: View {
     var body: some View {
         VStack {
             Spacer()
+            Header()
+                .padding(.bottom, 10)
             VStack{
                 Hero()
                 TextField("\(Image(systemName: "magnifyingglass")) Search menu", text: $searchText)
@@ -27,6 +35,29 @@ struct Menu: View {
             }
             .background(Color("#495E57"))
             .padding([.bottom], 20)
+            
+            VStack(alignment: .leading){
+                Text("ORDER FOR DELIVERY!")
+                    .font(.custom("Karla", size: 17))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
+                HStack(spacing: 20) {
+                    Toggle("Starters", isOn: $startersIsEnabled)
+                    Toggle("Mains", isOn: $mainsIsEnabled)
+                    Toggle("Desserts", isOn: $dessertsIsEnabled)
+                    Toggle("Drinks", isOn: $drinksIsEnabled)
+                }
+                .toggleStyle(MyToggleStyle())
+                .font(.caption)
+                .padding(.bottom, 10)
+                .toggleStyle(.button)
+                .padding(.horizontal)
+            }
+            .padding([.leading, .trailing], 15)
+            Divider()
+           
+            
+            
             FetchedObjects(
                 predicate: buildPredicate(),
                 sortDescriptors: buildSortDescriptors()
@@ -58,6 +89,7 @@ struct Menu: View {
     func buildSortDescriptors() -> [NSSortDescriptor] {
             return [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare))]
     }
+    
     func buildPredicate() -> NSPredicate {
         if !searchText.isEmpty {
             return NSPredicate(format: "title CONTAINS[cd] %@", searchText)
@@ -100,6 +132,38 @@ struct Menu: View {
     }
 }
 
+
+struct Header: View {
+    var body: some View{
+        HStack{
+            Image("logo2")
+           
+        }
+    
+    }
+}
+
+
+struct MyToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button {
+            configuration.isOn.toggle()
+        } label: {
+            HStack {
+                configuration.label
+                    .font(.custom("Karla", size: 16))
+            }
+        }
+        .foregroundColor(Color("#495E57"))
+        .padding(5)
+        .background {
+            if configuration.isOn {
+                Color("#495E57").opacity(0.1)
+            }
+        }
+        .cornerRadius(10)
+    }
+}
 
 
 struct Menu_Previews: PreviewProvider {

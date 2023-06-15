@@ -22,7 +22,7 @@ struct Hero: View{
                 Text("We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.")
                     .foregroundColor(.white)
                     .font(.custom("Karla", size: 14))
-                    .padding([.trailing], 35)
+                    .padding([.trailing], 33)
             }
             .padding([.top],20)
             .padding([.bottom],5)
