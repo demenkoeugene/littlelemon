@@ -10,46 +10,50 @@ import CoreData
 
 struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
+  
+    @State var isLoaded = false
     @State var searchText = ""
-
+    private var home = Home()
    
     
     var body: some View {
         VStack {
-            Text("My Restaurant App")
-                .font(.title)
-                .padding(.top, 16)
-            Text("Location: Chicago")
-                .font(.subheadline)
-            Text("Welcome to our restaurant app. Explore our menu and place your order.")
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-            TextField("Search menu", text: $searchText)
-                .padding([.leading, .trailing], 30)
+            Spacer()
+            VStack{
+                Hero()
+                TextField("\(Image(systemName: "magnifyingglass")) Search menu", text: $searchText)
+                    .textFieldStyle(.roundedBorder)
+                    .padding([.leading, .trailing, .bottom], 30)
+            }
+            .background(Color("#495E57"))
+            .padding([.bottom], 20)
             FetchedObjects(
                 predicate: buildPredicate(),
                 sortDescriptors: buildSortDescriptors()
             ) { (dishes: [DishEntity]) in
-              
-                    ScrollView {
-                        ForEach(dishes) { dish in
-                            NavigationLink(destination: MenuItemDetailsView(menuItem: dish)){
-                                VStack {
-                                    MenuCardView(dish: dish)
-                                    Divider()
-                                        .padding([.leading, .trailing], 30)
-                                }
-                               
+                ScrollView {
+                    ForEach(dishes) { dish in
+                        NavigationLink(destination: MenuItemDetailsView(menuItem: dish)){
+                            VStack {
+                                FoodMenuList(dish: dish)
                             }
                         }
                     }
+                }
             }
+            
+
         }
         .onAppear {
-            getMenuData()
+            if !isLoaded {
+                getMenuData()
+                isLoaded = true
+            }
         }
+        
     }
+    
+    
     
     func buildSortDescriptors() -> [NSSortDescriptor] {
             return [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare))]
@@ -96,39 +100,6 @@ struct Menu: View {
     }
 }
 
-struct MenuCardView: View{
-    var dish: DishEntity
-
-    var body: some View{
-        HStack{
-            VStack(alignment: .leading){
-                Text(dish.title!)
-                    .font(.custom("Karla", size: 18))
-                Text(dish.descriptionItem ?? "error" )
-                    .foregroundColor(Color("#495E57"))
-                    .padding([.top, .bottom], 2)
-                    .multilineTextAlignment(.leading)
-                Text("\(dish.price!)$")
-                    .foregroundColor(Color("#495E57"))
-            }
-            .font(.custom("Karla", size: 14))
-            Spacer()
-            AsyncImage(url: URL(string: dish.image!)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 80, height: 80)
-                    .cornerRadius(0)
-                } placeholder: {
-                    ProgressView()
-                }
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 80, height: 80)
-        }
-        .foregroundColor(.black)
-        .padding([.leading, .trailing], 30)
-    }
-}
 
 
 struct Menu_Previews: PreviewProvider {

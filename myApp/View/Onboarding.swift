@@ -17,7 +17,7 @@ struct Onboarding: View {
     @State private var isImageVisible = false
     @State private var isFormView = false
     
-    @State private var isLoggedIn = false
+    @State  private var isLoggedIn = false
     
     @State private var firstName = ""
     @State private var lastNme = ""
@@ -129,7 +129,7 @@ struct Logo: View{
         Image("logo2")
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 170, height: 70)
+            .frame(width: 200, height: 55)
     }
 }
 
