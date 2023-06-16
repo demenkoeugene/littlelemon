@@ -16,6 +16,8 @@
 		F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FC8302A326FE3000868D1 /* myAppApp.swift */; };
 		F62FC8352A326FE3000868D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8342A326FE3000868D1 /* Assets.xcassets */; };
 		F62FC8382A326FE3000868D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */; };
+		F662FBE82A3C7D5B00EB8C04 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE72A3C7D5B00EB8C04 /* Header.swift */; };
+		F662FBEA2A3C7D8000EB8C04 /* MenuBreakdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */; };
 		F66FC3E72A3B161400CB02C7 /* FoodMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66FC3E62A3B161400CB02C7 /* FoodMenuList.swift */; };
 		F66FC3E92A3B527400CB02C7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66FC3E82A3B527400CB02C7 /* Hero.swift */; };
 		F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */; };
@@ -38,6 +40,8 @@
 		F62FC8302A326FE3000868D1 /* myAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppApp.swift; sourceTree = "<group>"; };
 		F62FC8342A326FE3000868D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F662FBE72A3C7D5B00EB8C04 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBreakdown.swift; sourceTree = "<group>"; };
 		F66FC3E62A3B161400CB02C7 /* FoodMenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMenuList.swift; sourceTree = "<group>"; };
 		F66FC3E82A3B527400CB02C7 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -120,6 +124,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F662FBEB2A3C7E0900EB8C04 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				F6BDE2272A37294200FCE795 /* Menu.swift */,
+				F623B0802A39BA2E00289A17 /* MenuItemDetailsView.swift */,
+				F66FC3E82A3B527400CB02C7 /* Hero.swift */,
+				F66FC3E62A3B161400CB02C7 /* FoodMenuList.swift */,
+				F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
 		F6BDE2222A36705900FCE795 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,11 +150,9 @@
 			children = (
 				F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */,
 				F6BDE2252A3728FE00FCE795 /* Home.swift */,
-				F66FC3E62A3B161400CB02C7 /* FoodMenuList.swift */,
-				F6BDE2272A37294200FCE795 /* Menu.swift */,
-				F66FC3E82A3B527400CB02C7 /* Hero.swift */,
-				F623B0802A39BA2E00289A17 /* MenuItemDetailsView.swift */,
+				F662FBE72A3C7D5B00EB8C04 /* Header.swift */,
 				F6BDE22A2A37486B00FCE795 /* UserProfile.swift */,
+				F662FBEB2A3C7E0900EB8C04 /* MenuView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F662FBEA2A3C7D8000EB8C04 /* MenuBreakdown.swift in Sources */,
 				F623B0782A37BABC00289A17 /* Persistence.swift in Sources */,
 				F623B0832A39D3B200289A17 /* DishEntity+CoreDataProperties.swift in Sources */,
 				F623B0852A39D43700289A17 /* DishEntity+CoreDataClass.swift in Sources */,
@@ -225,6 +240,7 @@
 				F623B0812A39BA2E00289A17 /* MenuItemDetailsView.swift in Sources */,
 				F623B0742A37BA1000289A17 /* ExampleDatabase.xcdatamodeld in Sources */,
 				F623B0772A37BABC00289A17 /* FetchedObjects.swift in Sources */,
+				F662FBE82A3C7D5B00EB8C04 /* Header.swift in Sources */,
 				F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */,
 				F66FC3E92A3B527400CB02C7 /* Hero.swift in Sources */,
 				F6BDE2262A3728FE00FCE795 /* Home.swift in Sources */,

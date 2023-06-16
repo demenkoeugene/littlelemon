@@ -107,20 +107,29 @@ struct ViewForm: View{
                             UserDefaults.standard.set(firstName, forKey: kFirstName)
                             UserDefaults.standard.set(lastName, forKey: kLastName)
                             UserDefaults.standard.set(email, forKey: kEmail)
-                            isLoggedIn = true
+                            isLoggedIn.toggle()
                         }
                     }
-                    .font(.custom("Karla", size: 24))
-                    .foregroundColor(.white)
-                    .frame(width: 300, height: 50)
-                    .background(isPressed ? Color("#F4CE14") : Color("#495E57") )
-                    .cornerRadius(10)
+                    .buttonStyle(ButtonColor())
                 }
                 .font(.custom("Karla", size: 18))
                 .padding(.top, 15)
             }
         }
         .offset(y: -50)
+    }
+}
+
+struct ButtonColor: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.custom("Karla", size: 24))
+            .frame(width: 280, height: 30)
+            .foregroundColor(configuration.isPressed ? .black : .white)
+            .padding(10)
+            .background(configuration.isPressed ? Color("#F4CE14") : Color("#495E57"))
+            .cornerRadius(10)
+            .padding(.horizontal)
     }
 }
 

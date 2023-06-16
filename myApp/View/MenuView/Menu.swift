@@ -37,27 +37,14 @@ struct Menu: View {
             .padding([.bottom], 20)
             
             VStack(alignment: .leading){
-                Text("ORDER FOR DELIVERY!")
-                    .font(.custom("Karla", size: 17))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading)
-                HStack(spacing: 20) {
-                    Toggle("Starters", isOn: $startersIsEnabled)
-                    Toggle("Mains", isOn: $mainsIsEnabled)
-                    Toggle("Desserts", isOn: $dessertsIsEnabled)
-                    Toggle("Drinks", isOn: $drinksIsEnabled)
-                }
-                .toggleStyle(MyToggleStyle())
-                .font(.caption)
-                .padding(.bottom, 10)
-                .toggleStyle(.button)
-                .padding(.horizontal)
+                MenuBreakdown(startersIsEnabled: $startersIsEnabled,
+                              mainsIsEnabled: $mainsIsEnabled,
+                              dessertsIsEnabled: $dessertsIsEnabled,
+                              drinksIsEnabled: $drinksIsEnabled)
             }
             .padding([.leading, .trailing], 15)
             Divider()
            
-            
-            
             FetchedObjects(
                 predicate: buildPredicate(),
                 sortDescriptors: buildSortDescriptors()
@@ -157,37 +144,8 @@ struct Menu: View {
 }
 
 
-struct Header: View {
-    var body: some View{
-        HStack{
-            Image("logo2")
-                .padding(.bottom, 10)
-        }
-    
-    }
-}
 
 
-struct MyToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Button {
-            configuration.isOn.toggle()
-        } label: {
-            HStack {
-                configuration.label
-                    .font(.custom("Karla", size: 16))
-            }
-        }
-        .foregroundColor(Color("#495E57"))
-        .padding(5)
-        .background {
-            if configuration.isOn {
-                Color("#495E57").opacity(0.1)
-            }
-        }
-        .cornerRadius(12)
-    }
-}
 
 
 struct Menu_Previews: PreviewProvider {
