@@ -6,6 +6,6 @@ of food or using the search function to find food by name. The images below show
 
 # Preview
 
-<div align="center"
+<div align="center">
      <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/2023-06-17%2000.24.33.gif?raw=true" width = "40%">
 </div>
