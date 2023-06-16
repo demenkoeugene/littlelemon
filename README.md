@@ -22,7 +22,7 @@ of food or using the search function to find food by name. The images below show
 #Wireframe
 
 <div align="center">
-     <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/myWireframe.png?raw=true" width = "40%">
+     <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/myWireframe.png?raw=true" width = "60%">
 </div>
 
 
