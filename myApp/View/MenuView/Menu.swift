@@ -43,6 +43,7 @@ struct Menu: View {
                               drinksIsEnabled: $drinksIsEnabled)
             }
             .padding([.leading, .trailing], 15)
+            
             Divider()
            
             FetchedObjects(
