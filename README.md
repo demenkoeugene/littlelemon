@@ -19,7 +19,7 @@ of food or using the search function to find food by name. The images below show
      <li>It is also possible to save changes on the profile screen, which are held when the application is restarted.</li>
 </ul>
 
-#Wireframe
+# Wireframe
 
 <div align="center">
      <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/myWireframe.png?raw=true" width = "60%">
