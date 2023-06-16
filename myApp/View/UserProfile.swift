@@ -18,12 +18,9 @@ struct UserProfile: View {
     var body: some View {
         VStack{
             Image("logo2")
-                .padding(.top, 10)
+                .padding([.top, .bottom], 10)
                 
             VStack(alignment: .leading){
-                Text("Your personal information")
-                    .font(.custom("Markazi Text", size: 32))
-                    .multilineTextAlignment(.leading)
                 HStack(){
                     Image("profile-image-placeholder")
                         .resizable()
@@ -47,18 +44,47 @@ struct UserProfile: View {
                             .foregroundColor(.black)
                     }
                 }
-                .frame(maxWidth: 350)
+                .frame(maxWidth: 340)
             }
-            
            
             
-            Button("Log out"){
-                UserDefaults.standard.set(false, forKey: kIsLoggedIn)//?
-                self.presentation.wrappedValue.dismiss()
+           
+            List{
+                Button("\( Image(systemName: "creditcard")) Payment methods"){
+                    
+                }
+                .listRowSeparator(.hidden)
+                .padding([.top, .bottom], 8)
+                Button("\( Image(systemName: "tag")) Promo code"){
+                    
+                }
+                .listRowSeparator(.hidden)
+                .padding([.top, .bottom], 8)
+                Button("\( Image(systemName: "gearshape")) Settings"){
+                    
+                }
+                .listRowSeparator(.hidden)
+                .padding([.top, .bottom], 8)
+                Button("\( Image(systemName: "info.circle")) About us"){
+                    
+                }
+                .listRowSeparator(.hidden)
+                .padding([.top, .bottom], 8)
+                Button("\( Image(systemName: "questionmark.circle")) Support"){
+                    
+                }
+                .listRowSeparator(.hidden)
+                .padding([.top, .bottom], 8)
+                Button("\( Image(systemName: "door.left.hand.open")) Log out"){
+                    UserDefaults.standard.set(false, forKey: kIsLoggedIn)//?
+                    self.presentation.wrappedValue.dismiss()
+                }
+                .foregroundColor(.red)
+                .padding([.top, .bottom], 8)
             }
-            .font(.custom("Karla", size: 16))
-            .foregroundColor(.red)
-            Spacer()
+            .scrollContentBackground(.hidden)
+            .foregroundColor(.black)
+            .font(.custom("Karla", size: 18))
         }
         
     }
