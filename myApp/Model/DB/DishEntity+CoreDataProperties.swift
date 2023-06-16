@@ -20,7 +20,7 @@ extension DishEntity {
     @NSManaged public var image: String?
     @NSManaged public var price: String?
     @NSManaged public var descriptionItem: String?
-
+    @NSManaged public var category: String?
 }
 
 extension DishEntity : Identifiable {

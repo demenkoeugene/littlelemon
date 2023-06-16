@@ -17,9 +17,8 @@ struct UserProfile: View {
     
     var body: some View {
         VStack{
-            Image("logo2")
-                .padding([.top, .bottom], 10)
-                
+            Header()
+                .padding(.top, 10)
             VStack(alignment: .leading){
                 HStack(){
                     Image("profile-image-placeholder")

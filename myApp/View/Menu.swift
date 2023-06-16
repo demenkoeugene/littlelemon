@@ -26,10 +26,10 @@ struct Menu: View {
         VStack {
             Spacer()
             Header()
-                .padding(.bottom, 10)
             VStack{
                 Hero()
-                TextField("\(Image(systemName: "magnifyingglass")) Search menu", text: $searchText)
+                TextField("\(Image(systemName: "magnifyingglass")) Search menu",
+                          text: $searchText)
                     .textFieldStyle(.roundedBorder)
                     .padding([.leading, .trailing, .bottom], 30)
             }
@@ -90,15 +90,38 @@ struct Menu: View {
             return [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare))]
     }
     
+
     func buildPredicate() -> NSPredicate {
+        var subpredicates: [NSPredicate] = []
+        
+        // Search text predicate
         if !searchText.isEmpty {
-            return NSPredicate(format: "title CONTAINS[cd] %@", searchText)
-        } else {
-            return NSPredicate(value: true)
+            let searchPredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+            subpredicates.append(searchPredicate)
         }
+        
+        // Category filters
+        if !startersIsEnabled {
+            let startersPredicate = NSPredicate(format: "category != %@", "starters")
+            subpredicates.append(startersPredicate)
+        }
+        if !mainsIsEnabled {
+            let mainsPredicate = NSPredicate(format: "category != %@", "mains")
+            subpredicates.append(mainsPredicate)
+        }
+        if !dessertsIsEnabled {
+            let dessertsPredicate = NSPredicate(format: "category != %@", "desserts")
+            subpredicates.append(dessertsPredicate)
+        }
+        if !drinksIsEnabled {
+            let drinksPredicate = NSPredicate(format: "category != %@", "drinks")
+            subpredicates.append(drinksPredicate)
+        }
+        
+        // Combine subpredicates using AND operator
+        return NSCompoundPredicate(andPredicateWithSubpredicates: subpredicates)
     }
 
-    
     func getMenuData() {
         PersistenceController.shared.clear()
         let serverURLString = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
@@ -121,6 +144,7 @@ struct Menu: View {
                         dish.price = menuItem.price
                         dish.image = menuItem.image
                         dish.descriptionItem = menuItem.descriptionItem
+                        dish.category = menuItem.category
                     }
                     try? viewContext.save()
                 } catch {
@@ -137,7 +161,7 @@ struct Header: View {
     var body: some View{
         HStack{
             Image("logo2")
-           
+                .padding(.bottom, 10)
         }
     
     }
@@ -161,7 +185,7 @@ struct MyToggleStyle: ToggleStyle {
                 Color("#495E57").opacity(0.1)
             }
         }
-        .cornerRadius(10)
+        .cornerRadius(12)
     }
 }
 
