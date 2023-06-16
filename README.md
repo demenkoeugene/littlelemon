@@ -17,6 +17,7 @@ of food or using the search function to find food by name. The images below show
      <li>The main screen, contains the title, hero section, menu section, and dish list section.</li>
      <li>The profile screen displays the user's personal data and settings that apply to the entire application.</li>
      <li>It is also possible to save changes on the profile screen, which are held when the application is restarted.</li>
+     <li>I also used the <b>Core Data framework</b>. I made a network call to get this data from the URL. After receiving this data, I saved it using the framework.</li>
 </ul>
 
 # Wireframe
