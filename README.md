@@ -6,4 +6,4 @@ of food or using the search function to find food by name. The images below show
 
 # Preview
 
-[2023-06-17 00.24.33.gif](https://github.com/demenkoeugene/littlelemon/blob/main/2023-06-17%2000.24.33.gif?raw=true)
+![preview](https://github.com/demenkoeugene/littlelemon/blob/main/2023-06-17%2000.24.33.gif?raw=true)
