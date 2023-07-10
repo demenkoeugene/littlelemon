@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>381343752833-5t1jr303o3tmobrjqtcaie2ic8hnurs4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.381343752833-5t1jr303o3tmobrjqtcaie2ic8hnurs4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCRdNMqB9KRe3eu3IlJGIdnHunM_KN8Di8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>381343752833</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kub.myApp</string>
+	<key>PROJECT_ID</key>
+	<string>littlelemonrestaurant</string>
+	<key>STORAGE_BUCKET</key>
+	<string>littlelemonrestaurant.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:381343752833:ios:ccf6fa6c492d06e6726380</string>
+</dict>
+</plist>

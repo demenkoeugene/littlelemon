@@ -17,6 +17,7 @@
 		F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FC8302A326FE3000868D1 /* myAppApp.swift */; };
 		F62FC8352A326FE3000868D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8342A326FE3000868D1 /* Assets.xcassets */; };
 		F62FC8382A326FE3000868D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */; };
+		F63CF4022A5C937D0034EE93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F63CF4012A5C937D0034EE93 /* GoogleService-Info.plist */; };
 		F662FBE82A3C7D5B00EB8C04 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE72A3C7D5B00EB8C04 /* Header.swift */; };
 		F662FBEA2A3C7D8000EB8C04 /* MenuBreakdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */; };
 		F662FBED2A3C7F4500EB8C04 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBEC2A3C7F4500EB8C04 /* ViewModel.swift */; };
@@ -45,6 +46,7 @@
 		F62FC8302A326FE3000868D1 /* myAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppApp.swift; sourceTree = "<group>"; };
 		F62FC8342A326FE3000868D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F63CF4012A5C937D0034EE93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F662FBE72A3C7D5B00EB8C04 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBreakdown.swift; sourceTree = "<group>"; };
 		F662FBEC2A3C7F4500EB8C04 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -86,7 +88,6 @@
 				00B36227F23598803E83691C /* Pods-myApp.debug.xcconfig */,
 				43171CB3B4A7C7E6E95357C9 /* Pods-myApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -138,6 +139,7 @@
 				F623B06F2A379CFF00289A17 /* Model */,
 				F6BDE2222A36705900FCE795 /* font */,
 				F6BDE21E2A366CBC00FCE795 /* Info.plist */,
+				F63CF4012A5C937D0034EE93 /* GoogleService-Info.plist */,
 				F62FC8342A326FE3000868D1 /* Assets.xcassets */,
 				F62FC8362A326FE3000868D1 /* Preview Content */,
 			);
@@ -255,6 +257,7 @@
 			files = (
 				F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */,
 				F62FC8382A326FE3000868D1 /* Preview Assets.xcassets in Resources */,
+				F63CF4022A5C937D0034EE93 /* GoogleService-Info.plist in Resources */,
 				F62FC8352A326FE3000868D1 /* Assets.xcassets in Resources */,
 				F6BDE2242A3670AA00FCE795 /* Karla-Regular.ttf in Resources */,
 			);
