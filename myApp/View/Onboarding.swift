@@ -64,6 +64,7 @@ struct Onboarding: View {
     }
 }
 
+
 struct ViewForm: View{
     @Binding var firstName: String
     @Binding var lastName: String
@@ -119,6 +120,11 @@ struct ViewForm: View{
         .offset(y: -50)
     }
 }
+
+
+
+
+
 
 struct ButtonColor: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
