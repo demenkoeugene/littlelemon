@@ -25,9 +25,7 @@ struct myAppApp: App {
     var body: some Scene {
         WindowGroup {
 //            Onboarding()
-            NavigationStack{
-                AuthenticationView()
-            }
+            RootView()
         }
     }
 }
