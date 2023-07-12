@@ -19,7 +19,7 @@ struct Menu: View {
     
     @State var isLoaded = false
     @State var searchText = ""
-    private var home = Home()
+//    private var home = Home()
    
     
     var body: some View {

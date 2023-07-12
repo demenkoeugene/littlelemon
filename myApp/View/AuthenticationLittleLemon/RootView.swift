@@ -13,7 +13,7 @@ struct RootView: View {
     var body: some View {
         ZStack{
             NavigationStack{
-                SettingsView(showSignInView: $showSignInView)
+                Home(showSignInView: $showSignInView)
             }
         }
         .onAppear{
@@ -22,7 +22,7 @@ struct RootView: View {
         }
         .fullScreenCover(isPresented: $showSignInView) {
             NavigationStack{
-                AuthenticationView(showSignInView: $showSignInView)
+                Onboarding(showSingInView: $showSignInView)
             }
         }
     }

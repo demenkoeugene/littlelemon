@@ -34,6 +34,7 @@ final class SignInEmailViewModel: ObservableObject{
                             password: password)
     }
 }
+
 struct SignInEmailView: View {
     @StateObject private var viewModel = SignInEmailViewModel()
     @Binding var showSingInView: Bool

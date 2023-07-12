@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Home: View {
     let persistence = PersistenceController.shared
-    
+    @Binding var showSignInView: Bool
     var body: some View {
         TabView{
             Menu()
@@ -17,7 +17,7 @@ struct Home: View {
                 .tabItem {
                     Label("Menu", systemImage: "fork.knife.circle")
                 }
-            UserProfile()
+            UserProfile(showSignInView: $showSignInView)
                 .navigationTitle("Personal Information")
                 .tabItem {
                     Label("Profile", systemImage: "person")
@@ -31,6 +31,6 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(showSignInView: .constant(true))
     }
 }

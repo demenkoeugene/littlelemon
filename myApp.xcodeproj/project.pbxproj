@@ -171,11 +171,19 @@
 			children = (
 				F63CF4072A5D6B050034EE93 /* AuthenticationView.swift */,
 				F63CF40A2A5D6D9A0034EE93 /* SignInEmailView.swift */,
-				F63CF40C2A5D6FBF0034EE93 /* AuthenticationManager.swift */,
-				F664F4D02A5DEB5F0039447C /* RootView.swift */,
 				F664F4D22A5DEEEE0039447C /* SettingsView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */ = {
+			isa = PBXGroup;
+			children = (
+				F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */,
+				F63CF40C2A5D6FBF0034EE93 /* AuthenticationManager.swift */,
+				F664F4D02A5DEB5F0039447C /* RootView.swift */,
+			);
+			path = AuthenticationLittleLemon;
 			sourceTree = "<group>";
 		};
 		F662FBEB2A3C7E0900EB8C04 /* MenuView */ = {
@@ -210,8 +218,8 @@
 		F6BDE2292A37294B00FCE795 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */,
 				F63CF4092A5D6D760034EE93 /* Authentication */,
-				F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */,
 				F6BDE2252A3728FE00FCE795 /* Home.swift */,
 				F662FBE72A3C7D5B00EB8C04 /* Header.swift */,
 				F6BDE22A2A37486B00FCE795 /* UserProfile.swift */,

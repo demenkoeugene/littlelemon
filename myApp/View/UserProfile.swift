@@ -7,13 +7,37 @@
 
 import SwiftUI
 
+@MainActor
+final class UserProfileSettings: ObservableObject{
+    func signOut() throws {
+        AuthenticationManager.shared.signOut()
+    }
+    
+    func resetPassword() async throws {
+        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
+        
+        guard let email = authUser.email else{
+            throw URLError(.fileDoesNotExist )
+        }
+        try await AuthenticationManager.shared.resetPassword(email: email)
+    }
+    
+    func updateEmail() async throws{
+        let email = "hello123@gmail.com"
+        try await AuthenticationManager.shared.updateEmail(email: email)
+    }
+    
+    func updatePassword() async throws{
+        let password = "Hello123!"
+        try await AuthenticationManager.shared.updatePassword(password: password)
+    }
+}
+
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
-   
+    @StateObject private var viewModel = UserProfileSettings()
+    @Binding var showSignInView: Bool
     
-    let firstName = UserDefaults.standard.string(forKey: kFirstName) ?? ""
-    let lastName = UserDefaults.standard.string(forKey: kLastName) ?? ""
-    let email = UserDefaults.standard.string(forKey: kEmail) ?? ""
     
     var body: some View {
         VStack{
@@ -26,12 +50,12 @@ struct UserProfile: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
                         .cornerRadius(180)
-                    VStack(alignment: .leading){
-                        Text("\(firstName) \(lastName)")
-                            .font(.custom("Karla", size: 28))
-                        Text("\(email)")
-                            .font(.custom("Karla", size: 14))
-                            .foregroundColor(Color("#EDEFEE"))
+                    VStack(alignment: .leading) {
+//                        Text("\(viewModel.yourName) \(viewModel.yourLastName)")
+//                                                .font(.custom("Karla", size: 28))
+//                        Text("\(viewModel.email)")
+//                                                .font(.custom("Karla", size: 14))
+//                                                .foregroundColor(Color("#EDEFEE"))
                     }
                     Spacer()
                     Button{
@@ -75,8 +99,14 @@ struct UserProfile: View {
                 .listRowSeparator(.hidden)
                 .padding([.top, .bottom], 8)
                 Button("\( Image(systemName: "door.left.hand.open")) Log out"){
-                    UserDefaults.standard.set(false, forKey: kIsLoggedIn)//?
-                    self.presentation.wrappedValue.dismiss()
+                    Task {
+                        do{
+                            try viewModel.signOut()
+                            showSignInView  = true
+                        }catch{
+                            print(error)
+                        }
+                    }
                 }
                 .foregroundColor(.red)
                 .padding([.top, .bottom], 8)
@@ -91,6 +121,6 @@ struct UserProfile: View {
 
 struct UserProfile_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfile()
+        UserProfile(showSignInView: .constant(false))
     }
 }

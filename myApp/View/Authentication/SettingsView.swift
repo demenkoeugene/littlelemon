@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 final class SettingsViewModel: ObservableObject{
     func signOut() throws {
-         AuthenticationManager.shared.signOut()
+        AuthenticationManager.shared.signOut()
     }
     
     func resetPassword() async throws {
