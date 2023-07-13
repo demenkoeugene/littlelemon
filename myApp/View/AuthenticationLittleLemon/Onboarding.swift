@@ -13,12 +13,14 @@ import SwiftUI
 struct Onboarding: View {
     @State private var isImageVisible = false
     @State private var isFormView = false
-    @State private var isLoggingIn: Bool = false
+    
     
     @EnvironmentObject private var viewModel: AuthViewModel
     
     var body: some View {
+        
         NavigationStack{
+           
             VStack {
                 if isImageVisible {
                     Logo()
@@ -48,6 +50,7 @@ struct Onboarding: View {
     }
 }
 struct SignInView: View{
+    
     @State private var email = ""
     @State private var password = ""
     @EnvironmentObject private var authViewModel: AuthViewModel
@@ -58,6 +61,7 @@ struct SignInView: View{
     
     
     var body: some View{
+       
         VStack{
             Text("Sign Up")
                 .font(.custom("Markazi Text", size: 44))
@@ -119,6 +123,8 @@ struct SignUpView: View {
     @State private var isPressed: Bool = false
     
     var body: some View {
+        Logo()
+            .offset(y: -45)
         VStack {
             Text("Sign Up")
                 .font(.custom("Markazi Text", size: 44))
