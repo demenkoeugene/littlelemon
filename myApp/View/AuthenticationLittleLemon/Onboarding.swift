@@ -7,34 +7,7 @@
 
 import SwiftUI
 
-//@MainActor
-//final class SignUpEmailViewModel: ObservableObject{
-//    @Published var yourName = ""
-//    @Published var email = ""
-//    @Published var password = ""
-//
-//
-//    func signUp() async throws {
-//        guard !email.isEmpty, !password.isEmpty else{
-//            print("No email is not found")
-//            return
-//        }
-//
-//        _ = try await AuthenticationManager.shared.createUser(
-//                            email: email,
-//                            password: password)
-//    }
-//    func signIn() async throws {
-//        guard !email.isEmpty, !password.isEmpty else{
-//            print("No email is not found")
-//            return
-//        }
-//
-//        _ = try await AuthenticationManager.shared.signInUser(
-//                            email: email,
-//                            password: password)
-//    }
-//}
+
 
 
 struct Onboarding: View {
@@ -42,8 +15,7 @@ struct Onboarding: View {
     @State private var isFormView = false
     @State private var isLoggingIn: Bool = false
     
-    @StateObject private var viewModel = AuthViewModel()
-    @Binding var showSingInView: Bool
+    @EnvironmentObject private var viewModel: AuthViewModel
     
     var body: some View {
         NavigationStack{
@@ -55,7 +27,11 @@ struct Onboarding: View {
                 }
 
                 if isFormView {
-                        SignInView(viewmodel: viewModel, showSingInView: $showSingInView)
+                    if viewModel.userSession != nil {
+                        Home()
+                    }else{
+                        SignInView()
+                    }
                 }
             }
             .onAppear {
@@ -69,25 +45,17 @@ struct Onboarding: View {
                 }
             }
         }
-        
-        .onAppear {
-           
-        }
     }
 }
 struct SignInView: View{
     @State private var email = ""
     @State private var password = ""
-    @StateObject private var viewmodel: AuthViewModel
+    @EnvironmentObject private var authViewModel: AuthViewModel
     
-    @Binding var showSingInView: Bool
     @State var isPressed: Bool = false
-    @Environment(\.dismiss) var dismiss
+    
 
-    init(viewmodel: AuthViewModel, showSingInView: Binding<Bool>) {
-        self._viewmodel = StateObject(wrappedValue: viewmodel)
-        self._showSingInView = showSingInView
-    }
+    
     
     var body: some View{
         VStack{
@@ -109,13 +77,7 @@ struct SignInView: View{
                     Button{
                         isPressed.toggle()
                         Task {
-                            do{
-                                try await viewmodel.signIn(withEmail: email, password: password)
-                                showSingInView = false
-                                return
-                            }catch{
-                                print(error)
-                            }
+                            try await authViewModel.signIn(withEmail: email, password: password)
                         }
                     }label:{
                         Text("Sign in")
@@ -127,7 +89,7 @@ struct SignInView: View{
             }
             
             NavigationLink {
-                
+                SignUpView()
             } label: {
                 HStack(spacing: 3){
                     Text ("Don't have an account?")
@@ -145,83 +107,75 @@ struct SignInView: View{
 }
 
 
-struct SignUpView: View{
-    @StateObject private var authViewModel: AuthViewModel
-    @Binding var showSingInView: Bool
-    @State var isPressed: Bool = false
-   
 
-    init(authViewModel: AuthViewModel, showSingInView: Binding<Bool>) {
-        self._authViewModel = StateObject(wrappedValue: authViewModel)
-        self._showSingInView = showSingInView
-    }
+struct SignUpView: View {
+    @State private var fullName = ""
+    @State private var email = ""
+    @State private var password = ""
+    @Environment(\.dismiss) var dismiss
     
-    var body: some View{
-        VStack{
+    @EnvironmentObject private var authViewModel: AuthViewModel
+    
+    @State private var isPressed: Bool = false
+    
+    var body: some View {
+        VStack {
             Text("Sign Up")
                 .font(.custom("Markazi Text", size: 44))
-            Group{
-////                TextField("Name", text: $authViewModel.fullName)
-////                    .padding()
-////                    .frame(width: 300, height: 50)
-////                    .background(Color.black.opacity(0.05))
-////                    .cornerRadius(10)
-//                TextField("Email", text: $authViewModel.email)
-//                    .padding()
-//                    .frame(width: 300, height: 50)
-//                    .background(Color.black.opacity(0.05))
-//                    .cornerRadius(10)
-//                SecureField("Password", text: $authViewModel.password)
-//                    .padding()
-//                    .frame(width: 300, height: 50)
-//                    .background(Color.black.opacity(0.05))
-//                    .cornerRadius(10)
-                    
-                VStack{
-//                    Button{
-//                        isPressed.toggle()
-//                        Task {
-//                            do{
-//                                try await $authViewModel.signUp()
-//                                showSingInView = false
-//                                return
-//                            }catch{
-//                                print(error)
-//                            }
-//                        }
-//                    }label:{
-//                        Text("Sign Up")
-//                    }
-//                    .buttonStyle(ButtonColor())
+            
+            Group {
+                TextField("Name", text: $fullName)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                
+                TextField("Email", text: $email)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                
+                VStack {
+                    Button(action: {
+                        isPressed.toggle()
+                        Task {
+                            do {
+                                try await authViewModel.createUser(withEmail: email, password: password, fullname: fullName)
+                            } catch {
+                                print("Error press log in: \(error)")
+                            }
+                        }
+                    }) {
+                        Text("Sign Up")
+                    }
+                    .buttonStyle(ButtonColor())
                 }
                 .font(.custom("Karla", size: 18))
                 .padding(.top, 15)
             }
             
-            NavigationLink {
-                
-            } label: {
-                HStack(spacing: 3){
+            Button(action: {
+                dismiss()
+            }) {
+                HStack(spacing: 3) {
                     Text("Already have an account?")
-                    Text("Sign in")
-                        .fontWeight (.bold)
+                    Text("Sign up")
+                        .fontWeight(.bold)
                 }
                 .font(.custom("Karla", size: 16))
             }
             .padding(.top, 20)
-           
-            
         }
         .offset(y: -50)
     }
 }
-
-
-
-
-
-
-
 
 
 struct ButtonColor: ButtonStyle {
@@ -251,7 +205,7 @@ struct Logo: View{
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            Onboarding(showSingInView: .constant(false))
+            Onboarding()
         }
     }
 }

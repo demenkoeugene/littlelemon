@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>381343752833-5t1jr303o3tmobrjqtcaie2ic8hnurs4.apps.googleusercontent.com</string>
+	<string>385428270493-k3qct8js9mss55bb003jp8l2ct1ci4hi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.381343752833-5t1jr303o3tmobrjqtcaie2ic8hnurs4</string>
+	<string>com.googleusercontent.apps.385428270493-k3qct8js9mss55bb003jp8l2ct1ci4hi</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCRdNMqB9KRe3eu3IlJGIdnHunM_KN8Di8</string>
+	<string>AIzaSyDkKUuqy7q36sZ2hTTaq1y7uQK_YnzIyNo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>381343752833</string>
+	<string>385428270493</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.kub.myApp</string>
 	<key>PROJECT_ID</key>
-	<string>littlelemonrestaurant</string>
+	<string>littlelemon-restaurant</string>
 	<key>STORAGE_BUCKET</key>
-	<string>littlelemonrestaurant.appspot.com</string>
+	<string>littlelemon-restaurant.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:381343752833:ios:ccf6fa6c492d06e6726380</string>
+	<string>1:385428270493:ios:8905b036b40eef60d31374</string>
 </dict>
 </plist>

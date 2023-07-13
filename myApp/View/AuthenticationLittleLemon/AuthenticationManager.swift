@@ -7,40 +7,54 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-import Foundation
-import FirebaseAuth
-
-struct AuthDataResultModel{
-   
-    
-    let uid: String
-    let email: String?
-    let photoUrl: String?
-
-    init(user: User){
-        self.uid = user.uid
-        self.email = user.email
-        self.photoUrl = user.photoURL?.absoluteString
-    }
-}
-
+@MainActor
 class AuthViewModel: ObservableObject{
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     
-    init(){}
+    init(){
+        self.userSession = Auth.auth().currentUser
+        
+        Task{
+            await fetchUser()
+        }
+    }
     
     func signIn(withEmail email: String, password: String) async throws {
-        
+        do{
+            let result = try await Auth.auth().signIn(withEmail: email, password: password)
+            self.userSession = result.user
+            await fetchUser()
+        }catch{
+            print("DEBUG: Failed to log in with error \(error.localizedDescription)")
+        }
     }
     
     func createUser(withEmail email: String, password: String, fullname: String) async throws {
-        
+        do {
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            self.userSession = result.user
+            let user = User(id: result.user.uid, fullName: fullname, email: email)
+            let encodedUser = try Firestore.Encoder().encode(user)
+            try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+            await fetchUser()
+        } catch {
+            print("DEBUG: Failed to create user with error: \(error)")
+            print("DEBUG: Error description: \(error.localizedDescription)")
+        }
     }
-    
-    func signout() {
-        
+
+    func signOut() {
+        do{
+            try Auth.auth().signOut()
+            self.userSession = nil
+            self.currentUser = nil
+        }catch{
+            print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
+        }
     }
     
     func deleteAccount() {
@@ -48,50 +62,9 @@ class AuthViewModel: ObservableObject{
     }
     
     func fetchUser() async{
-        
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+            self.currentUser = try? snapshot.data(as: User.self)
     }
 }
 
-
-final class AuthenticationManager{
-    static let shared = AuthenticationManager()
-    private init(){}
-    
-    func getAuthenticatedUser() throws -> AuthDataResultModel{
-        guard let user = Auth.auth().currentUser else{
-            throw URLError(.badServerResponse)
-        }
-        
-        return AuthDataResultModel(user: user)
-    }
-    
-    func updatePassword(password: String) async throws{
-        guard let user = Auth.auth().currentUser else{
-            throw URLError(.badServerResponse)
-        }
-        try await user.updateEmail(to: password)
-    }
-    
-    func updateEmail(email: String) async throws{
-        guard let user = Auth.auth().currentUser else{
-            throw URLError(.badServerResponse)
-        }
-        try await user.updateEmail(to: email)
-    }
-    
-    func createUser(email: String, password: String) async throws -> AuthDataResultModel{
-        let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-        return AuthDataResultModel(user: authDataResult.user)
-    }
-    func resetPassword(email: String) async throws {
-       try await Auth.auth().sendPasswordReset(withEmail: email)
-    }
-    
-    func signInUser(email: String, password: String) async throws -> AuthDataResultModel{
-        let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-        return AuthDataResultModel(user: authDataResult.user)
-    }
-    func signOut(){
-        try? Auth.auth().signOut()
-    }
-}

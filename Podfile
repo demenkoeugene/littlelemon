@@ -16,4 +16,5 @@ target 'myApp' do
 	# For example, to use Firebase Authentication and Cloud Firestore
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
+	pod 'FirebaseFirestoreSwift'
 end
