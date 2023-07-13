@@ -37,7 +37,8 @@ struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
     @StateObject private var viewModel = UserProfileSettings()
     @Binding var showSignInView: Bool
-    
+ 
+
     
     var body: some View {
         VStack{
@@ -51,11 +52,11 @@ struct UserProfile: View {
                         .frame(width: 100, height: 100)
                         .cornerRadius(180)
                     VStack(alignment: .leading) {
-//                        Text("\(viewModel.yourName) \(viewModel.yourLastName)")
-//                                                .font(.custom("Karla", size: 28))
-//                        Text("\(viewModel.email)")
-//                                                .font(.custom("Karla", size: 14))
-//                                                .foregroundColor(Color("#EDEFEE"))
+                        Text("\(UserModel.MOCK_USER.fullName)")
+                                                .font(.custom("Karla", size: 28))
+                        Text("\(UserModel.MOCK_USER.email)")
+                                                .font(.custom("Karla", size: 14))
+                                                .foregroundColor(Color("#EDEFEE"))
                     }
                     Spacer()
                     Button{

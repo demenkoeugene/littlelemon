@@ -7,42 +7,42 @@
 
 import SwiftUI
 
-@MainActor
-final class SignUpEmailViewModel: ObservableObject{
-    @Published var yourName = ""
-    @Published var yourLastName = ""
-    @Published var email = ""
-    @Published var password = ""
-   
-    
-    func signUp() async throws {
-        guard !email.isEmpty, !password.isEmpty else{
-            print("No email is not found")
-            return
-        }
-        
-        let returnedUserData = try await AuthenticationManager.shared.createUser(
-                            email: email,
-                            password: password)
-    }
-    func signIn() async throws {
-        guard !email.isEmpty, !password.isEmpty else{
-            print("No email is not found")
-            return
-        }
-        
-        let returnedUserData = try await AuthenticationManager.shared.signInUser(
-                            email: email,
-                            password: password)
-    }
-}
+//@MainActor
+//final class SignUpEmailViewModel: ObservableObject{
+//    @Published var yourName = ""
+//    @Published var email = ""
+//    @Published var password = ""
+//
+//
+//    func signUp() async throws {
+//        guard !email.isEmpty, !password.isEmpty else{
+//            print("No email is not found")
+//            return
+//        }
+//
+//        _ = try await AuthenticationManager.shared.createUser(
+//                            email: email,
+//                            password: password)
+//    }
+//    func signIn() async throws {
+//        guard !email.isEmpty, !password.isEmpty else{
+//            print("No email is not found")
+//            return
+//        }
+//
+//        _ = try await AuthenticationManager.shared.signInUser(
+//                            email: email,
+//                            password: password)
+//    }
+//}
 
 
 struct Onboarding: View {
     @State private var isImageVisible = false
     @State private var isFormView = false
+    @State private var isLoggingIn: Bool = false
     
-    @StateObject private var viewModel = SignUpEmailViewModel()
+    @StateObject private var viewModel = AuthViewModel()
     @Binding var showSingInView: Bool
     
     var body: some View {
@@ -55,12 +55,9 @@ struct Onboarding: View {
                 }
 
                 if isFormView {
-                    ViewForm(emailViewModel: viewModel, showSingInView: $showSingInView)
+                        SignInView(viewmodel: viewModel, showSingInView: $showSingInView)
                 }
             }
-//            .navigationDestination(isPresented: $isLoggedIn) {
-//               Home()
-//            }
             .onAppear {
                 withAnimation(.easeInOut(duration: 0.1)) {
                     isImageVisible = true
@@ -78,17 +75,17 @@ struct Onboarding: View {
         }
     }
 }
-
-
-struct ViewForm: View{
-   
+struct SignInView: View{
+    @State private var email = ""
+    @State private var password = ""
+    @StateObject private var viewmodel: AuthViewModel
     
-    @StateObject private var emailViewModel: SignUpEmailViewModel
     @Binding var showSingInView: Bool
     @State var isPressed: Bool = false
+    @Environment(\.dismiss) var dismiss
 
-    init(emailViewModel: SignUpEmailViewModel, showSingInView: Binding<Bool>) {
-        self._emailViewModel = StateObject(wrappedValue: emailViewModel)
+    init(viewmodel: AuthViewModel, showSingInView: Binding<Bool>) {
+        self._viewmodel = StateObject(wrappedValue: viewmodel)
         self._showSingInView = showSingInView
     }
     
@@ -97,22 +94,12 @@ struct ViewForm: View{
             Text("Sign Up")
                 .font(.custom("Markazi Text", size: 44))
             Group{
-                TextField("Name", text: $emailViewModel.yourName)
+                TextField("Email", text: $email)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                TextField("Last Name", text: $emailViewModel.yourLastName)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                TextField("Email", text: $emailViewModel.email)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                SecureField("Password", text: $emailViewModel.password)
+                SecureField("Password", text: $password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
@@ -123,24 +110,13 @@ struct ViewForm: View{
                         isPressed.toggle()
                         Task {
                             do{
-                                try await emailViewModel.signUp()
+                                try await viewmodel.signIn(withEmail: email, password: password)
                                 showSingInView = false
                                 return
                             }catch{
                                 print(error)
                             }
                         }
-                        
-                        Task {
-                            do{
-                                try await emailViewModel.signIn()
-                                showSingInView = false
-                                return
-                            }catch{
-                                print(error)
-                            }
-                        }
-                       
                     }label:{
                         Text("Sign in")
                     }
@@ -149,10 +125,99 @@ struct ViewForm: View{
                 .font(.custom("Karla", size: 18))
                 .padding(.top, 15)
             }
+            
+            NavigationLink {
+                
+            } label: {
+                HStack(spacing: 3){
+                    Text ("Don't have an account?")
+                    Text("Sign up")
+                        .fontWeight (.bold)
+                }
+                .font(.custom("Karla", size: 16))
+            }
+            .padding(.top, 20)
+           
+            
         }
         .offset(y: -50)
     }
 }
+
+
+struct SignUpView: View{
+    @StateObject private var authViewModel: AuthViewModel
+    @Binding var showSingInView: Bool
+    @State var isPressed: Bool = false
+   
+
+    init(authViewModel: AuthViewModel, showSingInView: Binding<Bool>) {
+        self._authViewModel = StateObject(wrappedValue: authViewModel)
+        self._showSingInView = showSingInView
+    }
+    
+    var body: some View{
+        VStack{
+            Text("Sign Up")
+                .font(.custom("Markazi Text", size: 44))
+            Group{
+////                TextField("Name", text: $authViewModel.fullName)
+////                    .padding()
+////                    .frame(width: 300, height: 50)
+////                    .background(Color.black.opacity(0.05))
+////                    .cornerRadius(10)
+//                TextField("Email", text: $authViewModel.email)
+//                    .padding()
+//                    .frame(width: 300, height: 50)
+//                    .background(Color.black.opacity(0.05))
+//                    .cornerRadius(10)
+//                SecureField("Password", text: $authViewModel.password)
+//                    .padding()
+//                    .frame(width: 300, height: 50)
+//                    .background(Color.black.opacity(0.05))
+//                    .cornerRadius(10)
+                    
+                VStack{
+//                    Button{
+//                        isPressed.toggle()
+//                        Task {
+//                            do{
+//                                try await $authViewModel.signUp()
+//                                showSingInView = false
+//                                return
+//                            }catch{
+//                                print(error)
+//                            }
+//                        }
+//                    }label:{
+//                        Text("Sign Up")
+//                    }
+//                    .buttonStyle(ButtonColor())
+                }
+                .font(.custom("Karla", size: 18))
+                .padding(.top, 15)
+            }
+            
+            NavigationLink {
+                
+            } label: {
+                HStack(spacing: 3){
+                    Text("Already have an account?")
+                    Text("Sign in")
+                        .fontWeight (.bold)
+                }
+                .font(.custom("Karla", size: 16))
+            }
+            .padding(.top, 20)
+           
+            
+        }
+        .offset(y: -50)
+    }
+}
+
+
+
 
 
 
