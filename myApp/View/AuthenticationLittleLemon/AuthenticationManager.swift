@@ -14,10 +14,13 @@ import FirebaseFirestoreSwift
 protocol AuthenticationFormProtocol{
     var formIsValid: Bool {get}
 }
+
 @MainActor
 class AuthViewModel: ObservableObject{
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var errorLogIn: Error?
+    @Published var showAlert = false
     
     init(){
         self.userSession = Auth.auth().currentUser
@@ -29,10 +32,13 @@ class AuthViewModel: ObservableObject{
     
     func signIn(withEmail email: String, password: String) async throws {
         do{
+            showAlert = false
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
             await fetchUser()
         }catch{
+            showAlert = true
+            errorLogIn = error.localizedDescription as? any Error
             print("DEBUG: Failed to log in with error \(error.localizedDescription)")
         }
     }
@@ -57,6 +63,7 @@ class AuthViewModel: ObservableObject{
             self.userSession = nil
             self.currentUser = nil
         }catch{
+            
             print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
         }
     }
