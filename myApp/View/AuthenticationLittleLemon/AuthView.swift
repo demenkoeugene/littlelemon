@@ -14,91 +14,101 @@ struct SignInView: View{
     
     @State var isPressed: Bool = false
     
-   
-   
-    
-    
     var body: some View{
-       
         VStack{
-            Text("Sign Up")
-                .font(.custom("Markazi Text", size: 44))
-            Group{
-               
-
-                TextField("Email", text: $email)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke($authViewModel.showAlert.wrappedValue ? Color.red : Color.clear, lineWidth: 1)
-                    )
-
-
-
-                SecureField("Password", text: $password)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke($authViewModel.showAlert.wrappedValue ? Color.red : Color.clear, lineWidth: 1)
-                    )
-               
-
-                
-                VStack{
-                    Button{
-                        isPressed.toggle()
-                        Task {
-                            do{
-                                try await authViewModel.signIn(withEmail: email, password: password)
-                            }catch{
-                              
-                            }
-                        }
+            NavigationStack{
+                Spacer()
+                Spacer()
+                Logo()
+                Text("Sign In")
+                    .font(.custom("Markazi Text", size: 44))
+                Group{
+                    TextField("Email", text: $email)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke($authViewModel.showAlert.wrappedValue ? Color.red : Color.clear, lineWidth: 1)
+                        )
+                    
+                    
+                    
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke($authViewModel.showAlert.wrappedValue ? Color.red : Color.clear, lineWidth: 1)
+                        )
+                    
+                    NavigationLink{
+                        ForgotPasswordView()
                     }label:{
-                        Text("Sign in")
+                        Text("Forgot password?")
+                            .frame(width: 300, height: 50, alignment: .trailing)
+                            .font(.custom("Karla", size: 16))
                     }
-                    .buttonStyle(ButtonColor())
+                    
+                    VStack{
+                        Button{
+                            isPressed.toggle()
+                            Task {
+                                do{
+                                    try await authViewModel.signIn(withEmail: email, password: password)
+                                }catch{
+                                    
+                                }
+                            }
+                        }label:{
+                            Text("Sign in")
+                        }
+                        .buttonStyle(ButtonColor())
+                    }
+                    .font(.custom("Karla", size: 18))
+                    .disabled(!formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
+                    
+                    
                 }
-                .font(.custom("Karla", size: 18))
-                .padding(.top, 15)
-                .disabled(!formIsValid)
-                .opacity(formIsValid ? 1.0 : 0.5)
-                      
-               
-            }
-            if $authViewModel.showAlert.wrappedValue {
-                Text("You have entered an incorrect login or password. Please make sure it is correct.")
-                    .foregroundColor(Color.red)
-                    .font(.custom("Karla", size: 14))
-                    .frame(width: 300, height: 50)
-                    .lineLimit(2)
-            }
-            NavigationLink {
-                SignUpView()
-            } label: {
-                HStack(spacing: 3){
-                    Text ("Don't have an account?")
-                    Text("Sign up")
-                        .fontWeight (.bold)
+                
+                if $authViewModel.showAlert.wrappedValue {
+                    Text("Please check the username or password you entered. It seems they are incorrect.")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color.red)
+                        .font(.custom("Karla", size: 14))
+                        .frame(width: 300, height: 50)
+                        .lineLimit(2)
+                        .padding(.top, 15)
+                }else{
+                    Spacer()
+                        .frame(width: 300, height: 50)
+                        .lineLimit(2)
+                        .padding(.top, 15)
                 }
-                .font(.custom("Karla", size: 16))
+                
+                Spacer()
+                NavigationLink {
+                    SignUpView()
+                } label: {
+                    HStack(spacing: 3){
+                        Text ("Don't have an account?")
+                        Text("Sign up")
+                            .fontWeight (.bold)
+                    }
+                    .font(.custom("Karla", size: 16))
+                }
+                
+                .padding(.top, 20)
+                
+                
             }
-            .padding(.top, 20)
-           
-            
         }
-//        .alert(isPresented: $authViewModel.showAlert) {
-//            Alert(title: Text("Oops! Login problems"),
-//                  message: Text("you have an incorrect login or password. Please make sure it is correct. If you do not have an account, please register"),
-//                  dismissButton: .default(Text("Try Again")))
-//        }
-        .offset(y: -50)
+
+        .offset(y: -30)
     }
 }
 
@@ -123,63 +133,75 @@ struct SignUpView: View {
     @State private var isPressed: Bool = false
     
     var body: some View {
-        Logo()
-            .offset(y: -45)
-        VStack {
+        VStack{
+        NavigationStack{
+            Spacer()
+            Spacer()
+            Logo()
             Text("Sign Up")
                 .font(.custom("Markazi Text", size: 44))
-            
             Group {
-                TextField("Name", text: $fullName)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                
-                TextField("Email", text: $email)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                
-                SecureField("Password", text: $password)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                
-                VStack {
-                    Button(action: {
-                        isPressed.toggle()
-                        Task {
-                            do {
-                                try await authViewModel.createUser(withEmail: email, password: password, fullname: fullName)
-                            } catch {
-                                print("Error press log in: \(error)")
+                    TextField("Name", text: $fullName)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    TextField("Email", text: $email)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    VStack {
+                        Button(action: {
+                            isPressed.toggle()
+                            Task {
+                                do {
+                                    try await authViewModel.createUser(withEmail: email, password: password, fullname: fullName)
+                                } catch {
+                                    print("Error press log in: \(error)")
+                                }
                             }
+                        }) {
+                            Text("Sign Up")
                         }
-                    }) {
-                        Text("Sign Up")
+                        .buttonStyle(ButtonColor())
                     }
-                    .buttonStyle(ButtonColor())
+                    .font(.custom("Karla", size: 18))
+                    .padding(.top, 15)
+                    .disabled(!formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
                 }
-                .font(.custom("Karla", size: 18))
-                .padding(.top, 15)
+                
+                Spacer()
+                    .frame(width: 300, height: 50)
+                    .lineLimit(2)
+                    .padding(.top, 15)
+                Spacer()
+                Button(action: {
+                    dismiss()
+                }) {
+                    HStack(spacing: 3) {
+                        Text("Already have an account?")
+                        Text("Sign in")
+                            .fontWeight(.bold)
+                    }
+                    .font(.custom("Karla", size: 16))
+                }
+                .padding(.top, 20)
+               
             }
             
-            Button(action: {
-                dismiss()
-            }) {
-                HStack(spacing: 3) {
-                    Text("Already have an account?")
-                    Text("Sign up")
-                        .fontWeight(.bold)
-                }
-                .font(.custom("Karla", size: 16))
-            }
-            .padding(.top, 20)
         }
-        .offset(y: -50)
+        .offset(y: -30)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

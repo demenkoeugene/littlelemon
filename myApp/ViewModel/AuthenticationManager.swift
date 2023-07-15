@@ -68,6 +68,9 @@ class AuthViewModel: ObservableObject{
         }
     }
     
+    func resetPassword(email: String) async throws{
+        let result = try await Auth.auth().sendPasswordReset(withEmail: email)
+    }
     func deleteAccount() {
         
     }

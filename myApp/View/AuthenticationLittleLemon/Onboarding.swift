@@ -20,17 +20,13 @@ struct Onboarding: View {
     var body: some View {
         
         NavigationStack{
-           
+          
             VStack {
                 if isFormView {
                     if viewModel.userSession != nil {
                         Home()
                     }else{
-                        if isImageVisible {
-                            Logo()
-                                .transition(.opacity)
-                                .offset(y: isImageVisible ? -45 : 0)
-                        }
+                
                         SignInView()
                     }
                 }
