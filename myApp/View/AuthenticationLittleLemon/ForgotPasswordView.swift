@@ -24,10 +24,6 @@ struct ForgotPasswordView: View {
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke($authViewModel.showAlert.wrappedValue ? Color.red : Color.clear, lineWidth: 1)
-                    )
                 VStack{
                     Button{
                         isPressed.toggle()

@@ -29,7 +29,7 @@ struct myAppApp: App {
     @StateObject var viewmodel = AuthViewModel()
     var body: some Scene {
         WindowGroup {
-            Onboarding()
+            SplashScreenView()
                 .environmentObject(viewmodel)
         }
     }

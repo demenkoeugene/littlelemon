@@ -63,7 +63,6 @@ class AuthViewModel: ObservableObject{
             self.userSession = nil
             self.currentUser = nil
         }catch{
-            
             print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
         }
     }
