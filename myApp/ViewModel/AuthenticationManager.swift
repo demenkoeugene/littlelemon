@@ -69,10 +69,24 @@ class AuthViewModel: ObservableObject{
     }
     
     func resetPassword(email: String) async throws{
-        let result = try await Auth.auth().sendPasswordReset(withEmail: email)
+        do{
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+            self.userSession = nil
+            self.currentUser = nil
+        }catch{
+            print("DEBUG: Failed to reset password with error \(error.localizedDescription)")
+        }
     }
     func deleteAccount() {
-        
+        let user = Auth.auth().currentUser
+
+        user?.delete { error in
+          if let error = error {
+              print("DEBUG: Failed with deleting account \(error.localizedDescription)")
+          } else {
+              self.showAlert = false
+          }
+        }
     }
     
     func fetchUser() async{

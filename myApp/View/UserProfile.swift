@@ -12,7 +12,7 @@ import SwiftUI
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var viewModel: AuthViewModel
-
+    @State private var showAlert = false
     var body: some View {
         if let user = viewModel.currentUser{
             VStack{
@@ -27,10 +27,10 @@ struct UserProfile: View {
                             .cornerRadius(180)
                         VStack(alignment: .leading) {
                             Text("\(user.fullName)")
-                                                    .font(.custom("Karla", size: 28))
+                                .font(.custom("Karla", size: 28))
                             Text("\(user.email)")
-                                                    .font(.custom("Karla", size: 14))
-                                                    .foregroundColor(Color("#EDEFEE"))
+                                .font(.custom("Karla", size: 14))
+                                .foregroundColor(Color("#EDEFEE"))
                         }
                         Spacer()
                         Button{
@@ -44,9 +44,9 @@ struct UserProfile: View {
                     }
                     .frame(maxWidth: 340)
                 }
-               
                 
-               
+                
+                
                 List{
                     Button("\( Image(systemName: "creditcard")) Payment methods"){
                         
@@ -73,9 +73,43 @@ struct UserProfile: View {
                     }
                     .listRowSeparator(.hidden)
                     .padding([.top, .bottom], 8)
+                    
+                    Button("\(Image(systemName: "person.crop.circle.badge.xmark")) Account deletion") {
+                        showAlert = true
+                    }
+                    .listRowSeparator(.hidden)
+                    .foregroundColor(.red)
+                    .padding([.top, .bottom], 8)
+                    .alert(isPresented: $showAlert) {
+                            Alert(
+                                title: Text("Confirm Account Deletion"),
+                                message: Text("Are you sure you want to delete your account? This action cannot be undone."),
+                                primaryButton: .destructive(Text("Delete")) {
+                                    viewModel.userSession = nil
+                                    viewModel.currentUser = nil
+                                    viewModel.deleteAccount()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                    }
+                    
+                   
+                    
+                    
+                    NavigationLink(destination: ForgotPasswordView()) {
+                        Text("\(Image(systemName: "key")) Reset password")
+                            .foregroundColor(.red)
+                            .padding([.top, .bottom], 8)
+                    }
+                    .listRowSeparator(.hidden)
+                    .buttonStyle(PlainButtonStyle())
+                    .foregroundColor(.clear) // Hides the navigation arrow
+                    
+                    
                     Button("\( Image(systemName: "door.left.hand.open")) Log out"){
                         viewModel.signOut()
                     }
+                    .listRowSeparator(.hidden)
                     .foregroundColor(.red)
                     .padding([.top, .bottom], 8)
                 }
