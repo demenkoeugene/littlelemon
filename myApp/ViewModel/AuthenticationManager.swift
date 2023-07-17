@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
-
+import GoogleSignIn
 
 protocol AuthenticationFormProtocol{
     var formIsValid: Bool {get}

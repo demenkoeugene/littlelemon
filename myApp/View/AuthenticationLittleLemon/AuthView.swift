@@ -72,8 +72,44 @@ struct SignInView: View{
                     .disabled(!formIsValid)
                     .opacity(formIsValid ? 1.0 : 0.5)
                     
+                    HStack {
+                        VStack { Divider()}
+                        Text("or")
+                        VStack { Divider()}
+                    }
+                    .font(.custom("Karla", size: 14))
+                    .frame(width: 300, height: 50)
+                    .padding([.top, .bottom], 3)
+                    .frame(width: 300, height: 50)
                     
+                    VStack{
+                        Button{
+                            isPressed.toggle()
+                            Task {
+                                do{
+                                    
+                                }catch{
+                                    
+                                }
+                            }
+                        }label:{
+                            HStack(alignment: .center){
+                                Image("googlecolor")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 35)
+                                    .padding(.trailing, 5)
+                                    
+                                    
+                                Text("Sign in with Google")
+                            }
+                        }
+                        .buttonStyle(ButtonColor())
+                    }
+                    .font(.custom("Karla", size: 16))
                 }
+                
+                
                 
                 if $authViewModel.showAlert.wrappedValue {
                     Text("Please check the username or password you entered. It seems they are incorrect.")
@@ -103,12 +139,12 @@ struct SignInView: View{
                 }
                 
                 .padding(.top, 20)
-                
+                .offset(y: -30)
                 
             }
         }
 
-        .offset(y: -30)
+      
     }
 }
 
