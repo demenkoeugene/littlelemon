@@ -60,6 +60,7 @@ struct SignInView: View{
                             Task {
                                 do{
                                     try await authViewModel.signIn(withEmail: email, password: password)
+                                    $authViewModel.accessSignInWithGoogle.wrappedValue = false
                                 }catch{
                                     
                                 }
@@ -89,6 +90,7 @@ struct SignInView: View{
                             Task {
                                 do {
                                     await authViewModel.signInWithGoogle()
+                                    $authViewModel.accessSignInWithGoogle.wrappedValue = true
                                 } catch {
                                     print("Google Sign-In error:", error.localizedDescription)
                                 }

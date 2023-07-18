@@ -34,9 +34,9 @@
 		F6BDE2242A3670AA00FCE795 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */; };
 		F6BDE2262A3728FE00FCE795 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE2252A3728FE00FCE795 /* Home.swift */; };
 		F6BDE2282A37294200FCE795 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE2272A37294200FCE795 /* Menu.swift */; };
-		F6BDE22B2A37486B00FCE795 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE22A2A37486B00FCE795 /* UserProfile.swift */; };
 		F6BDE2322A379CC000FCE795 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BDE2312A379CC000FCE795 /* Model.swift */; };
 		F6C8CA0F2A66A54C001FA531 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8CA0E2A66A54C001FA531 /* Utilities.swift */; };
+		F6C8CA112A6723D3001FA531 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8CA102A6723D3001FA531 /* UserProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,9 +70,9 @@
 		F6BDE2232A3670AA00FCE795 /* Karla-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Karla-Regular.ttf"; sourceTree = "<group>"; };
 		F6BDE2252A3728FE00FCE795 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		F6BDE2272A37294200FCE795 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
-		F6BDE22A2A37486B00FCE795 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		F6BDE2312A379CC000FCE795 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		F6C8CA0E2A66A54C001FA531 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		F6C8CA102A6723D3001FA531 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +218,7 @@
 				F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */,
 				F6BDE2252A3728FE00FCE795 /* Home.swift */,
 				F662FBE72A3C7D5B00EB8C04 /* Header.swift */,
-				F6BDE22A2A37486B00FCE795 /* UserProfile.swift */,
+				F6C8CA102A6723D3001FA531 /* UserProfile.swift */,
 				F662FBEB2A3C7E0900EB8C04 /* MenuView */,
 			);
 			path = View;
@@ -366,13 +366,13 @@
 				F662FBED2A3C7F4500EB8C04 /* ViewModel.swift in Sources */,
 				F66FC3E72A3B161400CB02C7 /* FoodMenuList.swift in Sources */,
 				F640E3DD2A60A8E8006BDE55 /* AuthView.swift in Sources */,
-				F6BDE22B2A37486B00FCE795 /* UserProfile.swift in Sources */,
 				F623B0812A39BA2E00289A17 /* MenuItemDetailsView.swift in Sources */,
 				F623B0742A37BA1000289A17 /* ExampleDatabase.xcdatamodeld in Sources */,
 				F623B0772A37BABC00289A17 /* FetchedObjects.swift in Sources */,
 				F63CF40D2A5D6FBF0034EE93 /* AuthenticationManager.swift in Sources */,
 				F67179622A64727E00A37402 /* SplashScreenView.swift in Sources */,
 				F662FBE82A3C7D5B00EB8C04 /* Header.swift in Sources */,
+				F6C8CA112A6723D3001FA531 /* UserProfile.swift in Sources */,
 				F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */,
 				F66FC3E92A3B527400CB02C7 /* Hero.swift in Sources */,
 				F6BDE2262A3728FE00FCE795 /* Home.swift in Sources */,

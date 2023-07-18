@@ -9,21 +9,22 @@ import SwiftUI
 
 struct Home: View {
     let persistence = PersistenceController.shared
-    
+    @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
         TabView{
-            Menu()
-                .environment(\.managedObjectContext, persistence.container.viewContext)
-                .tabItem {
-                    Label("Menu", systemImage: "fork.knife.circle")
-                }
-            UserProfile()
-                .navigationTitle("Personal Information")
-                .tabItem {
-                    Label("Profile", systemImage: "person")
-                }
-               
+                Menu()
+                    .environment(\.managedObjectContext, persistence.container.viewContext)
+                    .tabItem {
+                        Label("Menu", systemImage: "fork.knife.circle")
+                    }
+                UserProfile()
+                    .navigationTitle("Personal Information")
+                    .tabItem {
+                        Label("Profile", systemImage: "person")
+                    }
+           
         }
+        
         .navigationBarBackButtonHidden(true)
     }
     

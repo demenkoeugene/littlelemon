@@ -24,14 +24,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 
+
 @main
 struct myAppApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-//    init(){
-//        FirebaseApp.configure()
-//    }
+    
+    
     @StateObject var viewmodel = AuthViewModel()
     var body: some Scene {
         WindowGroup {

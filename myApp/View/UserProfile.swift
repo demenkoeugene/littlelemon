@@ -2,7 +2,7 @@
 //  UserProfile.swift
 //  myApp
 //
-//  Created by Eugene Demenko on 12.06.2023.
+//  Created by Eugene Demenko on 18.07.2023.
 //
 
 import SwiftUI
@@ -12,9 +12,15 @@ import SwiftUI
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var viewModel: AuthViewModel
+    
+    
+
+
+    
     @State private var showAlert = false
     var body: some View {
-        if let user = viewModel.currentUser{
+        
+        if let user = viewModel.currentUser {
             VStack{
                 Header()
                     .padding(.top, 10)
@@ -93,19 +99,19 @@ struct UserProfile: View {
                             )
                     }
                     
-                   
+                
                     
-                    
-                    NavigationLink(destination: ForgotPasswordView()) {
-                        Text("\(Image(systemName: "key")) Reset password")
-                            .foregroundColor(.red)
-                            .padding([.top, .bottom], 8)
+                    if $viewModel.accessSignInWithGoogle.wrappedValue == true {
+                        NavigationLink(destination: ForgotPasswordView()) {
+                            Text("\(Image(systemName: "key")) Reset password")
+                                .foregroundColor(.red)
+                                .padding([.top, .bottom], 8)
+                        }
+                        .listRowSeparator(.hidden)
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(.clear) // Hides the navigation arrow
+                        
                     }
-                    .listRowSeparator(.hidden)
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.clear) // Hides the navigation arrow
-                    
-                    
                     Button("\( Image(systemName: "door.left.hand.open")) Log out"){
                         viewModel.signOut()
                     }
@@ -118,8 +124,10 @@ struct UserProfile: View {
                 .font(.custom("Karla", size: 18))
             }
         }
+           
         
     }
+        
 }
 
 struct UserProfile_Previews: PreviewProvider {
@@ -127,3 +135,4 @@ struct UserProfile_Previews: PreviewProvider {
         UserProfile()
     }
 }
+

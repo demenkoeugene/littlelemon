@@ -20,13 +20,11 @@ struct Onboarding: View {
     var body: some View {
         
         NavigationStack{
-          
             VStack {
                 if isFormView {
                     if viewModel.userSession != nil {
                         Home()
                     }else{
-                
                         SignInView()
                     }
                 }

@@ -24,10 +24,12 @@ struct Menu: View {
     
     var body: some View {
         VStack {
+           
             Spacer()
             Header()
             VStack{
                 Hero()
+               
                 TextField("\(Image(systemName: "magnifyingglass")) Search menu",
                           text: $searchText)
                     .textFieldStyle(.roundedBorder)

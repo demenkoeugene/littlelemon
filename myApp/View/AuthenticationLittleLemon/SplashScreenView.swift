@@ -11,9 +11,12 @@ struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 1.0
     @State private var opacity = 0.5
+    
+    @EnvironmentObject private var viewModel: AuthViewModel
     var body: some View {
         if isActive{
             Onboarding()
+                .environmentObject(viewModel)
         }else{
             VStack{
                 VStack{

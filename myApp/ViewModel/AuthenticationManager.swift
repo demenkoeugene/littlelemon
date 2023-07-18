@@ -12,62 +12,65 @@ import FirebaseFirestoreSwift
 import GoogleSignIn
 import FirebaseCore
 
-protocol AuthenticationFormProtocol{
-    var formIsValid: Bool {get}
+protocol AuthenticationFormProtocol {
+    var formIsValid: Bool { get }
 }
 
 @MainActor
-class AuthViewModel: ObservableObject{
+class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     @Published var errorLogIn: Error?
     @Published var showAlert = false
+    @Published var accessSignInWithGoogle = false
     
-    
-    init(){
+    init() {
         self.userSession = Auth.auth().currentUser
         
-        Task{
-            await fetchUser()
+        Task {
+            try await fetchUser()
         }
     }
     
     func signIn(withEmail email: String, password: String) async throws {
-        do{
-            showAlert = false
-            let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            self.userSession = result.user
-            await fetchUser()
-        }catch{
-            showAlert = true
-            errorLogIn = error.localizedDescription as? any Error
-            print("DEBUG: Failed to log in with error \(error.localizedDescription)")
-        }
-    }
+          do {
+              showAlert = false
+              let result = try await Auth.auth().signIn(withEmail: email, password: password)
+              self.userSession = result.user
+            
+              try await fetchUser()
+          } catch {
+              showAlert = true
+              errorLogIn = error.localizedDescription as? Error
+              print("DEBUG: Failed to log in with error \(error.localizedDescription)")
+          }
+      }
+      
     
     func createUser(withEmail email: String, password: String, fullname: String) async throws {
-        do {
-            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            self.userSession = result.user
-            let user = User(id: result.user.uid, fullName: fullname, email: email)
-            let encodedUser = try Firestore.Encoder().encode(user)
-            try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-            await fetchUser()
-        } catch {
-            print("DEBUG: Failed to create user with error: \(error)")
-            print("DEBUG: Error description: \(error.localizedDescription)")
-        }
-    }
+           do {
+               let result = try await Auth.auth().createUser(withEmail: email, password: password)
+               self.userSession = result.user
+               let user = User(id: result.user.uid, fullName: fullname, email: email)
+               let encodedUser = try Firestore.Encoder().encode(user)
+               try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+              
+               try await fetchUser()
+           } catch {
+               print("DEBUG: Failed to create user with error: \(error)")
+               print("DEBUG: Error description: \(error.localizedDescription)")
+           }
+       }
 
     func signOut() {
-        do{
-            try Auth.auth().signOut()
-            self.userSession = nil
-            self.currentUser = nil
-        }catch{
-            print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
+            do {
+                try Auth.auth().signOut()
+                self.userSession = nil
+                self.currentUser = nil
+            } catch {
+                print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
+            }
         }
-    }
     
     func resetPassword(email: String) async throws{
         do{
@@ -90,15 +93,19 @@ class AuthViewModel: ObservableObject{
         }
     }
     
-    func fetchUser() async{
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
-            self.currentUser = try? snapshot.data(as: User.self)
-    }
+    func fetchUser() async throws {
+            guard let uid = Auth.auth().currentUser?.uid else {
+                throw AuthenticationError.tokenError(message: "User ID not found")
+            }
+            
+            let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
+            self.currentUser = try snapshot.data(as: User.self)
+        }
 }
 
 enum AuthenticationError: Error {
-  case tokenError(message: String)
+    case tokenError(message: String)
+    case defaultError(message: String)
 }
 
 extension AuthViewModel {
@@ -108,31 +115,41 @@ extension AuthViewModel {
       }
       let config = GIDConfiguration(clientID: clientID)
       GIDSignIn.sharedInstance.configuration = config
-        guard let windowScene =  UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window =  windowScene.windows.first,
-              let rootViewController =  window.rootViewController else {
+
+      guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let window = windowScene.windows.first,
+            let rootViewController = window.rootViewController else {
         print("There is no root view controller!")
         return false
       }
 
         do {
-            let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-            let user = userAuthentication.user
-            guard let idToken = user.idToken else { throw AuthenticationError.tokenError(message: "ID token missing") }
-            let accessToken = user.accessToken
+          let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
 
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
+          let user = userAuthentication.user
+          guard let idToken = user.idToken else { throw AuthenticationError.tokenError(message: "ID token missing") }
+          let accessToken = user.accessToken
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
                                                          accessToken: accessToken.tokenString)
 
             let result = try await Auth.auth().signIn(with: credential)
             self.userSession = result.user
-            await fetchUser()
+            print("User \(String(describing: userSession?.uid)) signed in with email \(userSession?.email ?? "unknown")")
+    
+            let newUser = User(id: result.user.uid, fullName: userSession?.displayName ?? "problems", email: userSession?.email ?? "problems")
+            let encodedUser = try Firestore.Encoder().encode(newUser)
+            try await Firestore.firestore().collection("users").document(newUser.id).setData(encodedUser)
+            try await fetchUser()
+            
+            
+            try await fetchUser()
             
             return true
         }
         catch {
-            print(error.localizedDescription)
-            return false
+          print(error.localizedDescription)
+          return false
         }
     }
 }

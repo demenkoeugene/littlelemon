@@ -26,7 +26,6 @@ struct Hero: View{
             }
             .padding([.top],20)
             .padding([.bottom],5)
-            
             Image("HeroImage")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
