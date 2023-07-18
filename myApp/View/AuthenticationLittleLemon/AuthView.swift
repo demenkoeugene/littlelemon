@@ -14,6 +14,7 @@ struct SignInView: View{
     
     @State var isPressed: Bool = false
     
+
     var body: some View{
         VStack{
             NavigationStack{
@@ -82,31 +83,29 @@ struct SignInView: View{
                     .padding([.top, .bottom], 3)
                     .frame(width: 300, height: 50)
                     
-                    VStack{
-                        Button{
+                    VStack {
+                        Button(action: {
                             isPressed.toggle()
                             Task {
-                                do{
-                                    
-                                }catch{
-                                    
+                                do {
+                                    await authViewModel.signInWithGoogle()
+                                } catch {
+                                    print("Google Sign-In error:", error.localizedDescription)
                                 }
                             }
-                        }label:{
-                            HStack(alignment: .center){
+                        }) {
+                            HStack(alignment: .center) {
                                 Image("googlecolor")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 35)
                                     .padding(.trailing, 5)
-                                    
-                                    
                                 Text("Sign in with Google")
                             }
                         }
                         .buttonStyle(ButtonColor())
+                        .font(.custom("Karla", size: 16))
                     }
-                    .font(.custom("Karla", size: 16))
                 }
                 
                 

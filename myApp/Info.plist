@@ -7,12 +7,16 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>GoogleSignIn</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.905611042491-dqgubuph0sjn68t90csi5cco8q1m0v6b</string>
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>905611042491-dqgubuph0sjn68t90csi5cco8q1m0v6b.apps.googleusercontent.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MarkaziText2.ttf</string>
