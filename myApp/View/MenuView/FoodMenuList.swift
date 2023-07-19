@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FoodMenuList: View{
     var dish: DishEntity
-
+    
     var body: some View{
         HStack{
             VStack(alignment: .leading){
@@ -31,11 +31,11 @@ struct FoodMenuList: View{
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 80, height: 80)
                     .cornerRadius(0)
-                } placeholder: {
-                    ProgressView()
-                }
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 80, height: 80)
+            } placeholder: {
+                ProgressView()
+            }
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 80, height: 80)
         }
         .foregroundColor(.black)
         .padding([.leading, .trailing], 30)

@@ -16,24 +16,24 @@ struct Menu: View {
     @State var dessertsIsEnabled = true
     @State var drinksIsEnabled = true
     
-    
+   
     @State var isLoaded = false
     @State var searchText = ""
-//    private var home = Home()
-   
+    //    private var home = Home()
+    
     
     var body: some View {
         VStack {
-           
+          
             Spacer()
             Header()
             VStack{
                 Hero()
-               
+                
                 TextField("\(Image(systemName: "magnifyingglass")) Search menu",
                           text: $searchText)
-                    .textFieldStyle(.roundedBorder)
-                    .padding([.leading, .trailing, .bottom], 30)
+                .textFieldStyle(.roundedBorder)
+                .padding([.leading, .trailing, .bottom], 30)
             }
             .background(Color("#495E57"))
             .padding([.bottom], 20)
@@ -47,7 +47,7 @@ struct Menu: View {
             .padding([.leading, .trailing], 15)
             
             Divider()
-           
+            
             FetchedObjects(
                 predicate: MenuHelpers.buildPredicate(searchText: searchText,
                                                       startersIsEnabled: startersIsEnabled,
@@ -67,7 +67,7 @@ struct Menu: View {
                 }
             }
             
-
+            
         }
         .onAppear {
             if !isLoaded {

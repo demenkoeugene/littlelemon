@@ -12,7 +12,7 @@ struct MenuHelpers {
     static func buildSortDescriptors() -> [NSSortDescriptor] {
         return [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare))]
     }
-
+    
     static func buildPredicate(searchText: String, startersIsEnabled: Bool, mainsIsEnabled: Bool, dessertsIsEnabled: Bool, drinksIsEnabled: Bool) -> NSPredicate {
         var subpredicates: [NSPredicate] = []
         
@@ -43,7 +43,7 @@ struct MenuHelpers {
         // Combine subpredicates using AND operator
         return NSCompoundPredicate(andPredicateWithSubpredicates: subpredicates)
     }
-
+    
     static func getMenuData(viewContext: NSManagedObjectContext) {
         PersistenceController.shared.clear()
         let serverURLString = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"

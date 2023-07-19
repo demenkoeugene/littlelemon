@@ -20,21 +20,21 @@ struct MenuItemDetailsView: View {
                 ProgressView()
             }
             VStack(alignment: .leading){
-               
+                
                 Text("Description:")
                     .fontWeight(.bold)
                 Text(menuItem.descriptionItem ?? "error")
                 
             }
             HStack {
-                    Text("Price:")
-                        .fontWeight(.bold)
-                    Spacer()
-                    Text("\(menuItem.price!)$")
+                Text("Price:")
+                    .fontWeight(.bold)
+                Spacer()
+                Text("\(menuItem.price!)$")
             }
             .padding(5)
             
-          
+            
         }
         .navigationTitle(menuItem.title!)
         .navigationBarTitleDisplayMode(.large)

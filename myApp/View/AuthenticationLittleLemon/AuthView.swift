@@ -14,7 +14,7 @@ struct SignInView: View{
     
     @State var isPressed: Bool = false
     
-
+    
     var body: some View{
         VStack{
             NavigationStack{
@@ -144,8 +144,8 @@ struct SignInView: View{
                 
             }
         }
-
-      
+        
+        
     }
 }
 
@@ -171,13 +171,13 @@ struct SignUpView: View {
     
     var body: some View {
         VStack{
-        NavigationStack{
-            Spacer()
-            Spacer()
-            Logo()
-            Text("Sign Up")
-                .font(.custom("Markazi Text", size: 44))
-            Group {
+            NavigationStack{
+                Spacer()
+                Spacer()
+                Logo()
+                Text("Sign Up")
+                    .font(.custom("Markazi Text", size: 44))
+                Group {
                     TextField("Name", text: $fullName)
                         .padding()
                         .frame(width: 300, height: 50)
@@ -233,7 +233,7 @@ struct SignUpView: View {
                     .font(.custom("Karla", size: 16))
                 }
                 .padding(.top, 20)
-               
+                
             }
             
         }

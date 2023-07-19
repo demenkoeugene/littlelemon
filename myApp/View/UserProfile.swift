@@ -14,8 +14,8 @@ struct UserProfile: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     
-
-
+    
+    
     
     @State private var showAlert = false
     var body: some View {
@@ -87,21 +87,20 @@ struct UserProfile: View {
                     .foregroundColor(.red)
                     .padding([.top, .bottom], 8)
                     .alert(isPresented: $showAlert) {
-                            Alert(
-                                title: Text("Confirm Account Deletion"),
-                                message: Text("Are you sure you want to delete your account? This action cannot be undone."),
-                                primaryButton: .destructive(Text("Delete")) {
-                                    viewModel.userSession = nil
-                                    viewModel.currentUser = nil
-                                    viewModel.deleteAccount()
-                                },
-                                secondaryButton: .cancel()
-                            )
+                        Alert(
+                            title: Text("Confirm Account Deletion"),
+                            message: Text("Are you sure you want to delete your account? This action cannot be undone."),
+                            primaryButton: .destructive(Text("Delete")) {
+                                viewModel.userSession = nil
+                                viewModel.currentUser = nil
+                                viewModel.deleteAccount()
+                            },
+                            secondaryButton: .cancel()
+                        )
                     }
                     
-                
                     
-                    if $viewModel.accessSignInWithGoogle.wrappedValue == true {
+                    if !$viewModel.accessSignInWithGoogle.wrappedValue {
                         NavigationLink(destination: ForgotPasswordView()) {
                             Text("\(Image(systemName: "key")) Reset password")
                                 .foregroundColor(.red)
@@ -110,8 +109,8 @@ struct UserProfile: View {
                         .listRowSeparator(.hidden)
                         .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.clear) // Hides the navigation arrow
-                        
                     }
+                    
                     Button("\( Image(systemName: "door.left.hand.open")) Log out"){
                         viewModel.signOut()
                     }
@@ -124,10 +123,10 @@ struct UserProfile: View {
                 .font(.custom("Karla", size: 18))
             }
         }
-           
+        
         
     }
-        
+    
 }
 
 struct UserProfile_Previews: PreviewProvider {

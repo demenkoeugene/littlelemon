@@ -31,7 +31,7 @@ struct Hero: View{
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 125, height: 125)
                 .cornerRadius(10)
-               
+            
         }
         .padding([.leading, .trailing],20)
         .frame(maxHeight: 250)
