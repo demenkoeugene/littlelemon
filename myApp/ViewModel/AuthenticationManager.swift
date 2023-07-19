@@ -12,9 +12,13 @@ import FirebaseFirestoreSwift
 import GoogleSignIn
 import FirebaseCore
 
+
+
 protocol AuthenticationFormProtocol {
     var formIsValid: Bool { get }
 }
+
+var accessSignInWithGoogle = false
 
 @MainActor
 class AuthViewModel: ObservableObject {
@@ -22,7 +26,7 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var errorLogIn: Error?
     @Published var showAlert = false
-    @Published var accessSignInWithGoogle = true
+   
     
     
     init() {
@@ -40,7 +44,7 @@ class AuthViewModel: ObservableObject {
             self.userSession = result.user
            
             try await fetchUser()
-            accessSignInWithGoogle = true
+           
         } catch {
             showAlert = true
             errorLogIn = error.localizedDescription as? Error
@@ -53,12 +57,15 @@ class AuthViewModel: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = User(id: result.user.uid, fullName: fullname, email: email)
+            let user = User(id: result.user.uid,
+                            fullName: fullname,
+                            email: email,
+                            photoURL: nil)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             
             try await fetchUser()
-            accessSignInWithGoogle = true
+          
         } catch {
             print("DEBUG: Failed to create user with error: \(error)")
             print("DEBUG: Error description: \(error.localizedDescription)")
@@ -109,10 +116,12 @@ class AuthViewModel: ObservableObject {
 enum AuthenticationError: Error {
     case tokenError(message: String)
     case defaultError(message: String)
+    case noRootViewController
 }
 
 extension AuthViewModel {
-    func signInWithGoogle() async -> Bool {
+   
+    func signInWithGoogle() async throws {
         guard let clientID = FirebaseApp.app()?.options.clientID else {
             fatalError("No client ID found in Firebase configuration")
         }
@@ -122,9 +131,9 @@ extension AuthViewModel {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first,
               let rootViewController = window.rootViewController else {
-            print("There is no root view controller!")
-            return false
+            throw AuthenticationError.noRootViewController
         }
+
 
         do {
             let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
@@ -140,19 +149,22 @@ extension AuthViewModel {
             self.userSession = result.user
             print("User \(String(describing: userSession?.uid)) signed in with email \(userSession?.email ?? "unknown")")
             
-            let newUser = User(id: result.user.uid, fullName: userSession?.displayName ?? "problems", email: userSession?.email ?? "problems")
+            let newUser = User(id: result.user.uid,
+                               fullName: userSession?.displayName ?? "problems",
+                               email: userSession?.email ?? "problems",
+                               photoURL: userSession?.photoURL)
             let encodedUser = try Firestore.Encoder().encode(newUser)
             try await Firestore.firestore().collection("users").document(newUser.id).setData(encodedUser)
             try await fetchUser()
             
             
             try await fetchUser()
-            accessSignInWithGoogle = false
-            return true
+           
+           
         }
         catch {
           print(error.localizedDescription)
-          return false
+         
         }
     }
 }

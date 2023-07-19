@@ -19,18 +19,38 @@ struct UserProfile: View {
     
     @State private var showAlert = false
     var body: some View {
+       
         
         if let user = viewModel.currentUser {
+            
             VStack{
                 Header()
                     .padding(.top, 10)
                 VStack(alignment: .leading){
                     HStack(){
-                        Image("profile-image-placeholder")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(180)
+                        if let photoURL = user.photoURL {
+                            AsyncImage(url: photoURL) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(180)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                        } else {
+                            // Show a placeholder or default image when photoURL is nil
+                            Image(systemName: "person.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(180)
+                        }
+//                        Image("profile-image-placeholder")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(width: 100, height: 100)
+//                            .cornerRadius(180)
                         VStack(alignment: .leading) {
                             Text("\(user.fullName)")
                                 .font(.custom("Karla", size: 28))
@@ -39,13 +59,15 @@ struct UserProfile: View {
                                 .foregroundColor(Color("#EDEFEE"))
                         }
                         Spacer()
-                        Button{
-                            
-                        }label: {
-                            Image(systemName: "pencil")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(.black)
+                        if accessSignInWithGoogle {
+                            Button{
+                                
+                            }label: {
+                                Image(systemName: "pencil")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.black)
+                            }
                         }
                     }
                     .frame(maxWidth: 340)
@@ -100,7 +122,7 @@ struct UserProfile: View {
                     }
                     
                     
-                    if !$viewModel.accessSignInWithGoogle.wrappedValue {
+                    if accessSignInWithGoogle {
                         NavigationLink(destination: ForgotPasswordView()) {
                             Text("\(Image(systemName: "key")) Reset password")
                                 .foregroundColor(.red)
