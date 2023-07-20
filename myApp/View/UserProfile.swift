@@ -12,7 +12,7 @@ import SwiftUI
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var viewModel: AuthViewModel
-    
+   
     
     
     
@@ -33,27 +33,24 @@ struct UserProfile: View {
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 100, height: 100)
-                                    .cornerRadius(180)
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
                             } placeholder: {
                                 ProgressView()
                             }
                         } else {
                             // Show a placeholder or default image when photoURL is nil
-                            Image(systemName: "person.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 100, height: 100)
-                                .cornerRadius(180)
+                            Text (viewModel.currentUser?.initials ?? "A")
+                                .font (.title)
+                                .fontWeight (.semibold)
+                                .foregroundColor (.white)
+                                .frame (width: 80, height: 80)
+                                .background (Color (.systemGray3))
+                                .clipShape(Circle())
                         }
-//                        Image("profile-image-placeholder")
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                            .frame(width: 100, height: 100)
-//                            .cornerRadius(180)
                         VStack(alignment: .leading) {
                             Text("\(user.fullName)")
-                                .font(.custom("Karla", size: 28))
+                                .font(.custom("Karla", size: 24))
                             Text("\(user.email)")
                                 .font(.custom("Karla", size: 14))
                                 .foregroundColor(Color("#EDEFEE"))

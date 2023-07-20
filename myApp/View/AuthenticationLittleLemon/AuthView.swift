@@ -13,7 +13,7 @@ struct SignInView: View{
     @EnvironmentObject private var authViewModel: AuthViewModel
     
     @State var isPressed: Bool = false
-    
+    @State private var isLoading = false
     
     var body: some View{
         VStack{
@@ -55,18 +55,26 @@ struct SignInView: View{
                     }
                     
                     VStack{
-                        Button{
-                            isPressed.toggle()
+                        Button {
+                            isLoading = true
                             Task {
-                                do{
+                                do {
                                     try await authViewModel.signIn(withEmail: email, password: password)
                                     accessSignInWithGoogle = true
-                                }catch{
-                                    
+                                } catch {
+                                    // Handle sign-in error
                                 }
+                                isLoading = false
                             }
-                        }label:{
-                            Text("Sign in")
+                        } label: {
+                            if isLoading {
+                                ProgressView()
+                                    .frame(width: 30, height: 30)
+                                    .scaleEffect(1.5) // Increase the thickness
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Text("Sign in")
+                            }
                         }
                         .buttonStyle(ButtonColor())
                     }
@@ -166,9 +174,9 @@ struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject private var authViewModel: AuthViewModel
-    
+    @State private var isLoading = false
     @State private var isPressed: Bool = false
-    
+    @State private var isSuccess = false
     var body: some View {
         VStack{
             NavigationStack{
@@ -197,24 +205,44 @@ struct SignUpView: View {
                         .cornerRadius(10)
                     
                     VStack {
-                        Button(action: {
-                            isPressed.toggle()
+                        Button {
+                            isLoading = true
                             Task {
                                 do {
                                     try await authViewModel.createUser(withEmail: email, password: password, fullname: fullName)
+                                    isSuccess = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                        dismiss()
+                                    }
                                 } catch {
-                                    print("Error press log in: \(error)")
+                                    print("Error creating user: \(error)")
+                                }
+                                isLoading = false
+                            }
+                        } label: {
+                            
+                            if isLoading {
+                                ProgressView()
+                                    .frame(width: 30, height: 30)
+                                    .scaleEffect(1.5) // Increase the thickness
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                if isSuccess {
+                                    Text("Done ✅")
+                                   
+                                } else {
+                                    Text("Sign Up")
                                 }
                             }
-                        }) {
-                            Text("Sign Up")
                         }
                         .buttonStyle(ButtonColor())
                     }
+
                     .font(.custom("Karla", size: 18))
                     .padding(.top, 15)
                     .disabled(!formIsValid)
                     .opacity(formIsValid ? 1.0 : 0.5)
+                    .disabled(isSuccess)
                 }
                 
                 Spacer()
