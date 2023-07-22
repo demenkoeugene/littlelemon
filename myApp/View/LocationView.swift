@@ -32,8 +32,6 @@ struct LocationView: View {
                 .background(Color.white.opacity(0.3))
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
-                
-                               
             }
         }
         .padding()

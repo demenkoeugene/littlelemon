@@ -22,7 +22,6 @@ struct Home: View {
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
-            
         }
         
         .navigationBarBackButtonHidden(true)

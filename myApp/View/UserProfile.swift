@@ -14,9 +14,6 @@ struct UserProfile: View {
     @EnvironmentObject var viewModel: AuthViewModel
    
     
-    
-    
-    
     @State private var showAlert = false
     var body: some View {
        
