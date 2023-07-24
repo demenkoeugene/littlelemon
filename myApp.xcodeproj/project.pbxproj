@@ -222,6 +222,7 @@
 			children = (
 				F668B8E82A6B10B500E6F5C6 /* ReservationForm.swift */,
 				F668B8EA2A6B10D300E6F5C6 /* ReservationView.swift */,
+				F668B8EF2A6B118F00E6F5C6 /* LocationView.swift */,
 			);
 			path = ReservationForm;
 			sourceTree = "<group>";
@@ -246,14 +247,13 @@
 		F6BDE2292A37294B00FCE795 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */,
 				F668B8EC2A6B110500E6F5C6 /* Restaraunt */,
 				F668B8E72A6B109800E6F5C6 /* ReservationForm */,
-				F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */,
 				F6BDE2252A3728FE00FCE795 /* Home.swift */,
 				F662FBE72A3C7D5B00EB8C04 /* Header.swift */,
 				F6C8CA102A6723D3001FA531 /* UserProfile.swift */,
 				F662FBEB2A3C7E0900EB8C04 /* MenuView */,
-				F668B8EF2A6B118F00E6F5C6 /* LocationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

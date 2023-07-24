@@ -13,8 +13,8 @@ import SwiftUI
 struct Onboarding: View {
     @State private var isImageVisible = false
     @State private var isFormView = false
-    
-    
+   
+//    @StateObject var model = Model()
     @EnvironmentObject private var viewModel: AuthViewModel
     
     var body: some View {

@@ -19,10 +19,9 @@ struct UserProfile: View {
        
         
         if let user = viewModel.currentUser {
-            
+           
             VStack{
                 Header()
-                    .padding(.top, 10)
                 VStack(alignment: .leading){
                     HStack(){
                         if let photoURL = user.photoURL {

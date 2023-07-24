@@ -7,12 +7,11 @@
 
 import SwiftUI
 
+
 struct ReservationForm: View {
-    
-    @EnvironmentObject var model:Model
+    @ObservedObject var model:Model
     @State var showFormInvalidMessage = false
     @State var errorMessage = ""
-    
     
     private var restaurant:RestaurantLocation
     @State var reservationDate = Date()
@@ -37,152 +36,142 @@ struct ReservationForm: View {
     // so, this flag will defer the change
     @State var mustChangeReservation = false
     
-    init(_ restaurant:RestaurantLocation) {
+    init(_ restaurant: RestaurantLocation, model: Model) {
         self.restaurant = restaurant
+        self.model = model // Pass the Model object to the initializer
     }
     
     var body: some View {
         VStack {
-            Form {
-                // Restaurant information
-                RestaurantView(restaurant)
-                
-                // shows the party information
-                HStack {
-                    VStack (alignment: .leading) {
-                        Text("PARTY")
-                            .font(.subheadline)
-                        
-                        TextField("",
-                                  value: $party,
-                                  formatter: NumberFormatter())
-                        .keyboardType(.numberPad)
-                        .onChange(of: party) { value in
-                                                    if value < 1 { party = 1}
-                                                }
-                    }
+            NavigationStack{
+                Spacer()
+                    .frame(height: 50)
+                Form {
                     
+                    // Restaurant information
+                    RestaurantView(restaurant)
                     
-                    // DATE PICKER
+                    // shows the party information
                     VStack {
+                        VStack (alignment: .leading) {
+                            
+                            Stepper("Party for \(party)", value: $party, in: 0...12)
+                                .font(.custom("Karla", size: 16))
+                                .onChange(of: party) { value in
+                                    if value == 0 { party = 1}
+                                }
+                        }
                         
-                        // This shows the date picker
-                        // the option in:Date()... allows any date to be
-                        // selected from today forward.
-                        // if the option was in:...Date(), any date from the past up
-                        // to today could be selected
-                        //
-                        // displayedComponents specify that date and time must be displayed
-                        DatePicker(selection: $reservationDate, in: Date()...,
-                                   displayedComponents: [.date, .hourAndMinute]) {
-                            //              Text("Select a date")
+                        
+                        // DATE PICKER
+                        VStack {
+                            HStack{
+                                // This shows the date picker
+                                // the option in:Date()... allows any date to be
+                                // selected from today forward.
+                                // if the option was in:...Date(), any date from the past up
+                                // to today could be selected
+                                //
+                                // displayedComponents specify that date and time must be displayed
+                                Text("Data: ")
+                                    .font(.custom("Karla", size: 16))
+                                DatePicker(selection: $reservationDate, in: Date()...,
+                                           displayedComponents: [.date, .hourAndMinute]) {
+                                    //              Text("Select a date")
+                                }
+                                           .font(.custom("Karla", size: 16))
+                            }
                         }
                     }
-                }
-                .padding([.top, .bottom], 20)
-                
-                
-                
-                // Textfields showing informations like customer
-                // name, phone, email, and special requests
-                Group{
+                    
+                    .padding([.top, .bottom], 20)
+                    
+                    
+                    
+                    // Textfields showing informations like customer
+                    // name, phone, email, and special requests
                     Group{
-                        HStack{
-                            Text("NAME: ")
-                                .font(.subheadline)
-                            TextField("Your name...",
-                                      text: $customerName)
+                        Group{
+                            HStack{
+                                Text("NAME: ")
+                                    .font(.custom("Karla", size: 16))
+                                TextField("Your name...", text: $customerName)
+                                    .font(.custom("Karla", size: 16))
+                                
+                            }
                             
-                        }
-                        
-                        HStack{
-                            Text("PHONE: ")
-                                .font(.subheadline)
+                            HStack{
+                                Text("PHONE: ")
+                                    .font(.custom("Karla", size: 16))
+                                
+                                TextField("Your phone number...",
+                                          text: $customerPhoneNumber)
+                                .font(.custom("Karla", size: 16))
+                                .textContentType(.telephoneNumber)
+                                .keyboardType(.phonePad)
+                            }
                             
-                            TextField("Your phone number...",
-                                      text: $customerPhoneNumber)
-                            .textContentType(.telephoneNumber)
-                            .keyboardType(.phonePad)
+                            HStack(alignment: .center){
+                                TextField("add any special request (optional)",
+                                          text: $specialRequests,
+                                          axis:.vertical)
+                                .padding(.leading, 5)
+                                .font(.custom("Karla", size: 16))
+                                .overlay(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray.opacity(0.2))
+                                    .frame(width: 300 ,height: 50))
+                                .lineLimit(6)
+                                .frame(width: 300 ,height: 50)
+                                .padding([.top, .bottom], 10)
+                            }
+                            .frame(width: 400)
                         }
                         
-                        HStack{
-                            Text("E-MAIL: ")
-                                .font(.subheadline)
-                            TextField("Your e-mail...",
-                                      text: $customerEmail)
-                            .keyboardType(.emailAddress)
-                            .textContentType(.emailAddress)
-                            .disableAutocorrection(true)
-                            .autocapitalization(.none)
+                        HStack(alignment: .center){
+                            
+                            Button(action: {
+                                validateForm()
+                            }, label: {
+                                Text("Confirm Reservation")
+                            })
+                            .buttonStyle(ButtonColorForConfirm())
                         }
-                        
-                        
-                        TextField("add any special request (optional)",
-                                  text: $specialRequests,
-                                  axis:.vertical)
-                        .padding()
-                        .overlay( RoundedRectangle(cornerRadius: 20).stroke(.gray.opacity(0.2)) )
-                        .lineLimit(6)
-                        .padding([.top, .bottom], 20)
+                        .frame(width: 400)
                     }
-                    HStack(alignment: .center){
-                        
-                        // add the RESERVE button
-                        Button(action: {
-                            validateForm()
-                        }, label: {
-                            Text("CONFIRM RESERVATION")
-                        })
-                        .padding(.init(top: 10, leading: 30, bottom: 10, trailing: 30))
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(20)
-                        .padding(.top, 10)
-                    }
-                    .frame(width: 400)
-                  
+                    Spacer()
                 }
-            }
-            .frame(width: 400)
-
-            // Forms have this space between the title and the content
-            // that is amost impossible to remove without incurring
-            // into complex steps that run out of the scope of this
-            // course. So, this is a hack, to bring the content up
-            // try to comment this line and see what happens.
-            .padding(.top, -40)
-            
-            // makes the form background invisible
-            // the original color is gray
-            .scrollContentBackground(.hidden)
-            
-            .onChange(of: mustChangeReservation) { _ in
-                model.reservation = temporaryReservation
-            }
-            
-            // add an alert after this line
-            .alert("Oops", isPresented: $showFormInvalidMessage, actions: {
-                Button("OK", role: .cancel) { }
+                .scrollContentBackground(.hidden)
+                
+                
+                // Forms have this space between the title and the content
+                // that is amost impossible to remove without incurring
+                // into complex steps that run out of the scope of this
+                // course. So, this is a hack, to bring the content up
+                // try to comment this line and see what happens.
+                .onChange(of: mustChangeReservation) { _ in
+                    model.reservation = temporaryReservation
+                }
+                
+                // add an alert after this line
+                .alert("ERROR", isPresented: $showFormInvalidMessage, actions: {
+                    Button("OK", role: .cancel) { }
                 }, message: {
                     Text(self.errorMessage)
-            })
-            
+                })
+            }
         }
-        .onAppear {
-            model.displayingReservationForm = true
-        }
-        .onDisappear {
-            model.displayingReservationForm = false
-        }
+        .navigationBarTitle("Reservation")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
+    
+    
+    
     private func validateForm() {
-        
         // customerName must contain just letters
         let nameIsValid = isValid(name: customerName)
-        let emailIsValid = isValid(email: customerEmail)
         
-        guard nameIsValid && emailIsValid
+        guard nameIsValid
         else {
             var invalidNameMessage = ""
             if customerName.isEmpty || !isValid(name: customerName) {
@@ -194,12 +183,8 @@ struct ReservationForm: View {
                 invalidPhoneMessage = "The phone number cannot be blank.\n\n"
             }
             
-            var invalidEmailMessage = ""
-            if !customerEmail.isEmpty || !isValid(email: customerEmail) {
-                invalidEmailMessage = "The e-mail is invalid and cannot be blank."
-            }
             
-            self.errorMessage = "Found these errors in the form:\n\n \(invalidNameMessage)\(invalidPhoneMessage)\(invalidEmailMessage)"
+            self.errorMessage = "Found these errors in the form:\n\n \(invalidNameMessage)\(invalidPhoneMessage)"
             
             showFormInvalidMessage.toggle()
             return
@@ -210,7 +195,6 @@ struct ReservationForm: View {
         // create new temporary reservation
         let temporaryReservation = Reservation(restaurant:restaurant,
                                                customerName: customerName,
-                                               customerEmail: customerEmail,
                                                customerPhoneNumber: customerPhoneNumber,
                                                reservationDate:reservationDate,
                                                party:party,
@@ -238,20 +222,27 @@ struct ReservationForm: View {
         return true
     }
     
-    func isValid(email:String) -> Bool {
-        guard !email.isEmpty else { return false }
-        let emailValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
-        let emailValidationPredicate = NSPredicate(format: "SELF MATCHES %@", emailValidationRegex)
-        return emailValidationPredicate.evaluate(with: email)
+    
+    
+}
+
+struct ButtonColorForConfirm: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.custom("Karla", size: 20))
+            .frame(width: 280, height: 30)
+            .foregroundColor(configuration.isPressed ? .black : .white)
+            .padding(10)
+            .background(configuration.isPressed ? Color("#F4CE14") : Color("#495E57"))
+            .cornerRadius(10)
+            .padding(.horizontal)
     }
-    
-    
 }
 
 struct ReservationForm_Previews: PreviewProvider {
     static var previews: some View {
         let sampleRestaurant = RestaurantLocation(city: "Las Vegas", neighborhood: "Downtown", phoneNumber: "(702) 555-9898")
-        ReservationForm(sampleRestaurant).environmentObject(Model())
+        ReservationForm(sampleRestaurant, model: Model())
     }
 }
 

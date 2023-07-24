@@ -13,6 +13,8 @@ struct SplashScreenView: View {
     @State private var opacity = 0.5
     
     @EnvironmentObject private var viewModel: AuthViewModel
+    @EnvironmentObject private var model: Model
+    
     var body: some View {
         if isActive{
             Onboarding()

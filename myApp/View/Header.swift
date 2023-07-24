@@ -13,7 +13,6 @@ struct Header: View {
             Image("logo2")
                 .padding(.bottom, 10)
         }
-        
     }
 }
 

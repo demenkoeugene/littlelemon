@@ -24,8 +24,6 @@ struct Menu: View {
     
     var body: some View {
         VStack {
-          
-            Spacer()
             Header()
             VStack{
                 Hero()

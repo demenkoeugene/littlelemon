@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Home: View {
     let persistence = PersistenceController.shared
+    
     @EnvironmentObject var viewModel: AuthViewModel
     @StateObject var model = Model()
     
@@ -21,14 +22,13 @@ struct Home: View {
                     .tabItem {
                         Label("Menu", systemImage: "fork.knife.circle")
                     }
-                    .toolbarBackground(.white)
-               
-                LocationView()
+                
+                LocationView(model: model)
                     .tag(2)
                     .tabItem {
                         Label("Locations", systemImage: "fork.knife")
                     }
-                ReservationView()
+                ReservationView(model: model)
                     .tag(3)
                     .tabItem {
                         Label("Reservation", systemImage: "square.and.pencil")
@@ -39,24 +39,21 @@ struct Home: View {
                     .tabItem {
                         Label("Profile", systemImage: "person")
                     }
-                
             }
             .onAppear {
                 let tabBarAppearance = UITabBarAppearance()
                 tabBarAppearance.configureWithDefaultBackground()
                 UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
             }
-           
             .navigationBarBackButtonHidden(true)
         }
-        
-        .environmentObject(model) // Provide the Model object as an environment object
     }
 }
 
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(model: Model())
+        //            .environmentObject(Model()) // Provide the Model object as an environment object for preview
     }
 }

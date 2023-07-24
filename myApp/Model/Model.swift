@@ -39,7 +39,7 @@ class Model: ObservableObject {
                        phoneNumber: "(415) 555-9813")
   ]
   
-  @Published var reservation = Reservation()
+  @Published var reservation: Reservation = Reservation()
   @Published var displayingReservationForm = false
   @Published var temporaryReservation = Reservation()
   @Published var followNavitationLink = false

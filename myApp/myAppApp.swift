@@ -30,14 +30,14 @@ struct myAppApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject var model = Model()
+
     
     @StateObject var viewmodel = AuthViewModel()
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
                 .environmentObject(viewmodel)
-                .environmentObject(model)
+               
         }
     }
 }
