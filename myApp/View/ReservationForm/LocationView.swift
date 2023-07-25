@@ -12,7 +12,6 @@ struct LocationView: View {
     var body: some View {
         
         VStack {
-            
             Header()
             NavigationView {
                 // EmptyView()
@@ -24,8 +23,6 @@ struct LocationView: View {
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
             }
-           
-            
             .onDisappear{
                 if model.tabBarChanged { return }
                 // this changes the phrase from "Select a location"

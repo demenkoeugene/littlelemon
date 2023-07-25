@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseCore
 
 struct Reservation {
     var restaurant: RestaurantLocation
@@ -44,5 +47,28 @@ struct RestaurantLocation: Hashable {
         self.city = city
         self.neighborhood = neighborhood
         self.phoneNumber = phoneNumber
+    }
+}
+
+extension Reservation {
+    func toFirestoreDictionary() -> [String: Any] {
+        return [
+            "restaurant": restaurant.toFirestoreDictionary(),
+            "customerName": customerName,
+            "customerPhoneNumber": customerPhoneNumber,
+            "reservationDate": reservationDate,
+            "party": party,
+            "specialRequests": specialRequests,
+        ]
+    }
+}
+
+extension RestaurantLocation {
+    func toFirestoreDictionary() -> [String: Any] {
+        return [
+            "city": city,
+            "neighborhood": neighborhood,
+            "phoneNumber": phoneNumber,
+        ]
     }
 }

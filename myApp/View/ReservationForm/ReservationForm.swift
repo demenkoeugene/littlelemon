@@ -9,13 +9,13 @@ import SwiftUI
 
 
 struct ReservationForm: View {
-    @ObservedObject var model:Model
+    @ObservedObject var model: Model
     @State var showFormInvalidMessage = false
     @State var errorMessage = ""
     
     private var restaurant:RestaurantLocation
     @State var reservationDate = Date()
-    @State var party:Int = 1
+    @State var party: Int = 1
     @State var specialRequests:String = ""
     @State var customerName = ""
     @State var customerPhoneNumber = ""
@@ -150,6 +150,7 @@ struct ReservationForm: View {
                 // try to comment this line and see what happens.
                 .onChange(of: mustChangeReservation) { _ in
                     model.reservation = temporaryReservation
+                    saveReservationToFirestore(reservation: temporaryReservation)
                 }
                 
                 // add an alert after this line
@@ -224,6 +225,33 @@ struct ReservationForm: View {
     
     
     
+    private func fetchReservationFromFirestore() {
+        let db = Firestore.firestore()
+        let reservationsCollection = db.collection("reservations")
+        let reservationDocument = reservationsCollection.document(reservationId)
+        
+        reservationDocument.getDocument { (document, error) in
+            if let error = error {
+                print("Error loading reservation from Firestore: \(error)")
+            } else if let document = document {
+                let reservation = Reservation(
+                    restaurant: RestaurantLocation(
+                        city: document["restaurant"]["city"] as! String,
+                        neighborhood: document["restaurant"]["neighborhood"] as! String,
+                        phoneNumber: document["restaurant"]["phoneNumber"] as! String
+                    ),
+                    customerName: document["customerName"] as! String,
+                    customerPhoneNumber: document["customerPhoneNumber"] as! String,
+                    reservationDate: document["reservationDate"] as! Date,
+                    party: document["party"] as! Int,
+                    specialRequests: document["specialRequests"] as! String
+                )
+                
+                // Display the reservation value in the view
+                self.temporaryReservation = reservation
+            }
+        }
+    }
 }
 
 struct ButtonColorForConfirm: ButtonStyle {

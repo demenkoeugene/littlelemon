@@ -36,9 +36,6 @@ struct ReservationView: View {
                                 }
                             }
                             .offset(y: 250)
-                            
-                            
-                            
                         } else {
                             
                             HStack {
