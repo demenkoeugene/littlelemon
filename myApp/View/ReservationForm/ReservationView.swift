@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ReservationView: View {
-    @ObservedObject var model: Model
+//    @ObservedObject var model: ReservationViewModel
+    @ObservedObject var viewmodelReservation: FirestoreManager
+    @ObservedObject var viewModelAuth = AuthViewModel()
     
     var body: some View {
         // you can create variables inside body
         // to help you reduce code repetition
-        let restaurant = model.reservation.restaurant
-        let reservationDate = model.reservation.reservationDate
+        let restaurant = viewmodelReservation.reservation.restaurant
+        let reservationDate = viewmodelReservation.reservation.reservationDate
+        
         VStack{
             
             Header()
@@ -60,7 +63,7 @@ struct ReservationView: View {
                                         .foregroundColor(.gray)
                                         .font(.custom("Karla", size: 16))
                                     
-                                    Text(model.reservation.customerName)
+                                    Text(viewmodelReservation.reservation.customerName)
                                         .keyboardType(.default)
                                         .font(.custom("Karla", size: 16))
                                     Spacer()
@@ -71,7 +74,7 @@ struct ReservationView: View {
                                         .foregroundColor(.gray)
                                         .font(.custom("Karla", size: 16))
                                     
-                                    Text(model.reservation.customerPhoneNumber)
+                                    Text(viewmodelReservation.reservation.customerPhoneNumber)
                                         .font(.custom("Karla", size: 16))
                                         .keyboardType(.asciiCapableNumberPad)
                                     Spacer()
@@ -87,7 +90,7 @@ struct ReservationView: View {
                                     .font(.custom("Karla", size: 16))
                                     .font(.subheadline)
                                 
-                                Text("\(model.reservation.party)")
+                                Text("\(viewmodelReservation.reservation.party)")
                                     .font(.custom("Karla", size: 16))
                                 Spacer()
                             }
@@ -120,7 +123,7 @@ struct ReservationView: View {
                                     Text("SPECIAL REQUESTS:")
                                         .foregroundColor(.gray)
                                         .font(.custom("Karla", size: 16))
-                                    Text(model.reservation.specialRequests)
+                                    Text(viewmodelReservation.reservation.specialRequests)
                                         .font(.custom("Karla", size: 16))
                                 }
                                 Spacer()
@@ -141,13 +144,17 @@ struct ReservationView: View {
             }
             .offset(y: -15)
         }
+        .onAppear{
+            viewmodelReservation.getData(userId: viewModelAuth.currentUser?.id ?? "error with getData")
+        }
     }
+        
 }
-struct ReservationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReservationView(model: Model())
-    }
-}
+//struct ReservationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReservationView(model: ReservationViewModel())
+//    }
+//}
 
 
 

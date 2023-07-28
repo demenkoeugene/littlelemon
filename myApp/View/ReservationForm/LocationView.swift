@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocationView: View {
-    @ObservedObject var model: Model
+    @ObservedObject var model: FirestoreManager
     var body: some View {
         
         VStack {
@@ -48,6 +48,6 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView(model: Model())
+        LocationView(model: FirestoreManager())
     }
 }

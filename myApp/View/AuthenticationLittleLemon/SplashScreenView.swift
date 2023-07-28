@@ -13,7 +13,7 @@ struct SplashScreenView: View {
     @State private var opacity = 0.5
     
     @EnvironmentObject private var viewModel: AuthViewModel
-    @EnvironmentObject private var model: Model
+    @EnvironmentObject private var model: FirestoreManager
     
     var body: some View {
         if isActive{

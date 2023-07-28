@@ -11,7 +11,7 @@ struct Home: View {
     let persistence = PersistenceController.shared
     
     @EnvironmentObject var viewModel: AuthViewModel
-    @StateObject var model = Model()
+    @StateObject var model = FirestoreManager()
     
     var body: some View {
         NavigationView {
@@ -28,7 +28,7 @@ struct Home: View {
                     .tabItem {
                         Label("Locations", systemImage: "fork.knife")
                     }
-                ReservationView(model: model)
+                ReservationView(viewmodelReservation: model)
                     .tag(3)
                     .tabItem {
                         Label("Reservation", systemImage: "square.and.pencil")
@@ -53,7 +53,7 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home(model: Model())
+        Home(model: FirestoreManager())
         //            .environmentObject(Model()) // Provide the Model object as an environment object for preview
     }
 }

@@ -10,28 +10,33 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCore
 
-struct Reservation {
+struct Reservation: Identifiable {
     var restaurant: RestaurantLocation
     var customerName:String
     var customerPhoneNumber:String
-    var reservationDate:Date
+    var reservationDate: Date
     var party:Int
     var specialRequests:String
     var id = UUID()
+    var customerId: String
+    var createReservation: Date
     
     init(restaurant: RestaurantLocation = RestaurantLocation(),
          customerName: String = "",
          customerPhoneNumber: String = "",
          reservationDate:Date = Date(),
          party:Int = 1,
-         specialRequests:String = "") {
+         specialRequests:String = "",
+         customerId: String = "",
+         createReservation: Date = Date()) {
         self.restaurant = restaurant
         self.customerName = customerName
         self.customerPhoneNumber = customerPhoneNumber
         self.reservationDate = reservationDate
         self.party = party
         self.specialRequests = specialRequests
-       
+        self.customerId = customerId
+        self.createReservation = createReservation
     }
     
 }
@@ -49,7 +54,7 @@ struct RestaurantLocation: Hashable {
         self.phoneNumber = phoneNumber
     }
 }
-
+//save 
 extension Reservation {
     func toFirestoreDictionary() -> [String: Any] {
         return [
@@ -59,6 +64,8 @@ extension Reservation {
             "reservationDate": reservationDate,
             "party": party,
             "specialRequests": specialRequests,
+            "customerId": customerId,
+            "createReservation": createReservation
         ]
     }
 }
@@ -72,3 +79,5 @@ extension RestaurantLocation {
         ]
     }
 }
+
+

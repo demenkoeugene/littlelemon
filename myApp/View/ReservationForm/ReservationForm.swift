@@ -9,9 +9,10 @@ import SwiftUI
 
 
 struct ReservationForm: View {
-    @ObservedObject var model: Model
+    @ObservedObject var model: FirestoreManager
     @State var showFormInvalidMessage = false
     @State var errorMessage = ""
+    @ObservedObject var viewmodelReservation = FirestoreManager()
     
     private var restaurant:RestaurantLocation
     @State var reservationDate = Date()
@@ -20,7 +21,7 @@ struct ReservationForm: View {
     @State var customerName = ""
     @State var customerPhoneNumber = ""
     @State var customerEmail = ""
-    
+    @EnvironmentObject var viewModelAuth: AuthViewModel
     
     // this environment variable stores the presentation mode status
     // of this view. This will be used to dismiss this view when
@@ -36,7 +37,7 @@ struct ReservationForm: View {
     // so, this flag will defer the change
     @State var mustChangeReservation = false
     
-    init(_ restaurant: RestaurantLocation, model: Model) {
+    init(_ restaurant: RestaurantLocation, model: FirestoreManager) {
         self.restaurant = restaurant
         self.model = model // Pass the Model object to the initializer
     }
@@ -149,8 +150,10 @@ struct ReservationForm: View {
                 // course. So, this is a hack, to bring the content up
                 // try to comment this line and see what happens.
                 .onChange(of: mustChangeReservation) { _ in
-                    model.reservation = temporaryReservation
-                    saveReservationToFirestore(reservation: temporaryReservation)
+//                    model.reservation = temporaryReservation
+                    
+                    viewmodelReservation.saveReservationToFirestore(reservation: temporaryReservation, userId: viewModelAuth.currentUser?.id ?? "error with save")
+                    
                 }
                 
                 // add an alert after this line
@@ -224,34 +227,7 @@ struct ReservationForm: View {
     }
     
     
-    
-    private func fetchReservationFromFirestore() {
-        let db = Firestore.firestore()
-        let reservationsCollection = db.collection("reservations")
-        let reservationDocument = reservationsCollection.document(reservationId)
-        
-        reservationDocument.getDocument { (document, error) in
-            if let error = error {
-                print("Error loading reservation from Firestore: \(error)")
-            } else if let document = document {
-                let reservation = Reservation(
-                    restaurant: RestaurantLocation(
-                        city: document["restaurant"]["city"] as! String,
-                        neighborhood: document["restaurant"]["neighborhood"] as! String,
-                        phoneNumber: document["restaurant"]["phoneNumber"] as! String
-                    ),
-                    customerName: document["customerName"] as! String,
-                    customerPhoneNumber: document["customerPhoneNumber"] as! String,
-                    reservationDate: document["reservationDate"] as! Date,
-                    party: document["party"] as! Int,
-                    specialRequests: document["specialRequests"] as! String
-                )
-                
-                // Display the reservation value in the view
-                self.temporaryReservation = reservation
-            }
-        }
-    }
+
 }
 
 struct ButtonColorForConfirm: ButtonStyle {
@@ -270,7 +246,7 @@ struct ButtonColorForConfirm: ButtonStyle {
 struct ReservationForm_Previews: PreviewProvider {
     static var previews: some View {
         let sampleRestaurant = RestaurantLocation(city: "Las Vegas", neighborhood: "Downtown", phoneNumber: "(702) 555-9898")
-        ReservationForm(sampleRestaurant, model: Model())
+        ReservationForm(sampleRestaurant, model: FirestoreManager())
     }
 }
 

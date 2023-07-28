@@ -83,18 +83,4 @@ struct MenuHelpers {
 
 
 
-func saveReservationToFirestore(reservation: Reservation) {
-    let db = Firestore.firestore()
-    let reservationsCollection = db.collection("reservations")
-    let reservationDocument = reservationsCollection.document(reservation.id.uuidString)
-    
-    reservationDocument.setData(reservation.toFirestoreDictionary()) { error in
-        if let error = error {
-            print("Error saving reservation to Firestore: \(error)")
-        } else {
-            print("Reservation saved to Firestore")
-        }
-    }
-}
-
 
