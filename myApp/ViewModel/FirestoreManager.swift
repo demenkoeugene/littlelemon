@@ -12,6 +12,7 @@ import FirebaseFirestore
 class FirestoreManager: ObservableObject{
     @Published var reservations = [Reservation]()
     @Published var reservation: Reservation = Reservation()
+    
     let restaurants = [
         RestaurantLocation(city: "Las Vegas",
                            neighborhood: "Downtown",
@@ -73,12 +74,12 @@ class FirestoreManager: ObservableObject{
                         return Reservation(
                             restaurant: restaurantLocation,
                             customerName: document["customerName"] as? String ?? "",
-                            customerPhoneNumber: document["customerName"] as? String ?? "",
-                            reservationDate: document["reservationDate"] as? Date ?? Date(),
+                            customerPhoneNumber: document["customerPhoneNumber"] as? String ?? "",
+                            reservationDate: (document["reservationDate"] as? Timestamp)?.dateValue() ?? Date(),
                             party: document["party"] as? Int ?? -1,
                             specialRequests: document["specialRequests"] as? String ?? "",
                             customerId: document["customerId"] as? String ?? "",
-                            createReservation: document["createReservation"] as? Date ?? Date()
+                            createReservation: (document["createReservation"] as? Timestamp)?.dateValue() ?? Date()
                         )
                     }
                     
@@ -86,18 +87,14 @@ class FirestoreManager: ObservableObject{
                     print("Fetched \(reservations.count) reservations.")
                     self.reservations = reservations
                     
-                    
                     // Filter the reservations to only those that were booked by the user
-                    let filteredReservations = reservations.filter { $0.customerId == userId }
+                    let filteredReservations = self.reservations.filter { $0.customerId == userId }
                     
-                    
-                    let sortedReservations = filteredReservations.sorted(by: { $0.createReservation > $1.createReservation })
-                    
-                    // Set the `resviewmodel.reservation` property to the first element (latest) in the sorted array
-                    if let latestReservation = sortedReservations.first {
-                        self.reservation = latestReservation
-                        print("Here reservation \(latestReservation)")
+                    if let lastReservation = filteredReservations.sorted(by: { $0.createReservation > $1.createReservation }).first {
+                        self.reservation = lastReservation
+                        print("Here reservation \(lastReservation)")
                     }
+                    
                 }
             }
         }
@@ -105,11 +102,11 @@ class FirestoreManager: ObservableObject{
     
     
     
-    //    func reload() {
-    //        // This will trigger the `objectWillChange.send()` method, which will update the view
-    //        self.reservations = []
-    //        getData()
-    //    }
+    func reload(userId: String) {
+        // This will trigger the `objectWillChange.send()` method, which will update the view
+        self.reservations = []
+        getData(userId: userId)
+    }
     
     
     
@@ -181,39 +178,3 @@ class FirestoreManager: ObservableObject{
     }
 }
 
-//
-//class ReservationViewModel: ObservableObject {
-//    let restaurants = [
-//        RestaurantLocation(city: "Las Vegas",
-//                           neighborhood: "Downtown",
-//                           phoneNumber: "(702) 555-9898"),
-//        RestaurantLocation(city: "Los Angeles",
-//                           neighborhood: "North Hollywood",
-//                           phoneNumber: "(213) 555-1453"),
-//        RestaurantLocation(city: "Los Angeles",
-//                           neighborhood: "Venice",
-//                           phoneNumber: "(310) 555-1222"),
-//        RestaurantLocation(city: "Nevada",
-//                           neighborhood: "Venice",
-//                           phoneNumber: "(725) 555-5454"),
-//        RestaurantLocation(city: "San Francisco",
-//                           neighborhood: "North Beach",
-//                           phoneNumber: "(415) 555-1345"),
-//        RestaurantLocation(city: "San Francisco",
-//                           neighborhood: "Union Square",
-//                           phoneNumber: "(415) 555-9813")
-//    ]
-//    
-//    @Published var reservation: Reservation = Reservation()
-//    @Published var displayingReservationForm = false
-//    @Published var temporaryReservation = Reservation()
-//    @Published var followNavitationLink = false
-//    
-//    @Published var displayTabBar = true
-//    @Published var tabBarChanged = false
-//    @Published var tabViewSelectedIndex = Int.max {
-//        didSet {
-//            tabBarChanged = true
-//        }
-//    }
-//}

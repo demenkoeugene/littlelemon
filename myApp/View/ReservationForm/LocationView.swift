@@ -25,11 +25,8 @@ struct LocationView: View {
             }
             .onDisappear{
                 if model.tabBarChanged { return }
-                // this changes the phrase from "Select a location"
-                // to "RESERVATION"
                 model.displayingReservationForm = true
             }
-            
             .frame(maxHeight: .infinity)
             
             // SwiftUI has this space between the title and the list
