@@ -35,6 +35,7 @@
 		F67179672A6584C500A37402 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F67179662A6584C500A37402 /* GoogleSignInSwift */; };
 		F67179692A6591F900A37402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F67179682A6591F900A37402 /* GoogleService-Info.plist */; };
 		F67311392A6342B5009657C5 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67311382A6342B5009657C5 /* ForgotPasswordView.swift */; };
+		F67B55BE2A7677E900318D87 /* ReservationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B55BD2A7677E900318D87 /* ReservationCard.swift */; };
 		F683B48D2A7145D20050DE86 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683B48C2A7145D20050DE86 /* FirestoreManager.swift */; };
 		F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */; };
 		F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */; };
@@ -77,6 +78,7 @@
 		F67179612A64727E00A37402 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		F67179682A6591F900A37402 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F67311382A6342B5009657C5 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		F67B55BD2A7677E900318D87 /* ReservationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCard.swift; sourceTree = "<group>"; };
 		F683B48C2A7145D20050DE86 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		F6BDE21E2A366CBC00FCE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -223,9 +225,11 @@
 		F668B8E72A6B109800E6F5C6 /* ReservationForm */ = {
 			isa = PBXGroup;
 			children = (
+				F668B8EC2A6B110500E6F5C6 /* Restaraunt */,
 				F668B8E82A6B10B500E6F5C6 /* ReservationForm.swift */,
 				F668B8EA2A6B10D300E6F5C6 /* ReservationView.swift */,
 				F668B8EF2A6B118F00E6F5C6 /* LocationView.swift */,
+				F67B55BD2A7677E900318D87 /* ReservationCard.swift */,
 			);
 			path = ReservationForm;
 			sourceTree = "<group>";
@@ -251,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */,
-				F668B8EC2A6B110500E6F5C6 /* Restaraunt */,
 				F668B8E72A6B109800E6F5C6 /* ReservationForm */,
 				F6BDE2252A3728FE00FCE795 /* Home.swift */,
 				F662FBE72A3C7D5B00EB8C04 /* Header.swift */,
@@ -417,6 +420,7 @@
 				F6C8CA112A6723D3001FA531 /* UserProfile.swift in Sources */,
 				F62FC8312A326FE3000868D1 /* myAppApp.swift in Sources */,
 				F66FC3E92A3B527400CB02C7 /* Hero.swift in Sources */,
+				F67B55BE2A7677E900318D87 /* ReservationCard.swift in Sources */,
 				F668B8D82A687E5500E6F5C6 /* User.swift in Sources */,
 				F6BDE2262A3728FE00FCE795 /* Home.swift in Sources */,
 				F668B8F02A6B118F00E6F5C6 /* LocationView.swift in Sources */,

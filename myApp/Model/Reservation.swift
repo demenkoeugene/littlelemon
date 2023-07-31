@@ -11,17 +11,18 @@ import FirebaseFirestoreSwift
 import FirebaseCore
 
 struct Reservation: Identifiable {
+    @DocumentID var id: String?
     var restaurant: RestaurantLocation
     var customerName:String
     var customerPhoneNumber:String
     var reservationDate: Date
     var party:Int
     var specialRequests:String
-    var id = UUID()
     var customerId: String
     var createReservation: Date
     
-    init(restaurant: RestaurantLocation = RestaurantLocation(),
+    init(id: String? = nil,
+         restaurant: RestaurantLocation = RestaurantLocation(),
          customerName: String = "",
          customerPhoneNumber: String = "",
          reservationDate:Date = Date(),
@@ -29,6 +30,7 @@ struct Reservation: Identifiable {
          specialRequests:String = "",
          customerId: String = "",
          createReservation: Date = Date()) {
+        self.id = id
         self.restaurant = restaurant
         self.customerName = customerName
         self.customerPhoneNumber = customerPhoneNumber

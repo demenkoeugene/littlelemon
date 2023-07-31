@@ -46,7 +46,7 @@ class FirestoreManager: ObservableObject{
         }
     }
     
-    func getData(userId: String) {
+    func getData(userId: String, completion: @escaping (Reservation?) -> Void) {
         // Get a reference to the database
         let db = Firestore.firestore()
         
@@ -68,10 +68,13 @@ class FirestoreManager: ObservableObject{
                             // Return nil if the required fields for restaurant location are missing
                             return nil
                         }
+                        
                         let restaurantLocation = RestaurantLocation(city: city,
                                                                     neighborhood: neighborhood,
                                                                     phoneNumber: phoneNumber)
+                        
                         return Reservation(
+                            id: document.documentID,
                             restaurant: restaurantLocation,
                             customerName: document["customerName"] as? String ?? "",
                             customerPhoneNumber: document["customerPhoneNumber"] as? String ?? "",
@@ -81,6 +84,7 @@ class FirestoreManager: ObservableObject{
                             customerId: document["customerId"] as? String ?? "",
                             createReservation: (document["createReservation"] as? Timestamp)?.dateValue() ?? Date()
                         )
+                        
                     }
                     
                     // Here, you have an array of `Reservation` objects created from the Firestore documents
@@ -93,7 +97,16 @@ class FirestoreManager: ObservableObject{
                     if let lastReservation = filteredReservations.sorted(by: { $0.createReservation > $1.createReservation }).first {
                         self.reservation = lastReservation
                         print("Here reservation \(lastReservation)")
+                    } else {
+                        // If no reservations were found, set the reservation to an empty Reservation object
+                        self.reservation = Reservation()
                     }
+                    
+                    DispatchQueue.main.async {
+                        completion(self.reservation) // Call completion on the main queue with the last reservation or an empty Reservation object
+                    }
+                    
+                    
                     
                 }
             }
@@ -101,13 +114,22 @@ class FirestoreManager: ObservableObject{
     }
     
     
-    
-    func reload(userId: String) {
-        // This will trigger the `objectWillChange.send()` method, which will update the view
-        self.reservations = []
-        getData(userId: userId)
+    func deleteReservation(reservationToDelete: Reservation, userId: String) {
+        // Get a reference to the database
+        let db = Firestore.firestore()
+        let reservationsCollection = db.collection("reservations")
+        
+        reservationsCollection.document(reservationToDelete.id ?? "error").delete() { [self] err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                getData(userId: userId) { reservation in
+                    print("Reloading after removed!")
+                }
+            }
+        }
     }
-    
     
     
     func saveReservationToFirestore(reservation: Reservation, userId: String) {
@@ -133,48 +155,7 @@ class FirestoreManager: ObservableObject{
     }
     
     
-    func deleteReservation(reservationToDelete: Reservation) {
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Specify the document to delete
-        let reservationId = reservationToDelete.id.uuidString
-        db.collection("reservations").document(reservationId).delete { error in
-            
-            // Check for errors
-            if error == nil {
-                // No errors
-                
-                // Update the UI from the main thread
-                DispatchQueue.main.async {
-                    
-                    // Remove the reservation that was just deleted
-                    self.reservations.removeAll { reservation in
-                        
-                        // Check for the reservation to remove
-                        return reservation.id.uuidString == reservationId
-                    }
-                }
-                
-                
-            }
-        }
-        
-    }
     
-    func updateReservation(reservationToUpdate: Reservation) {
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Set the data to update
-        let updatedReservationData = reservationToUpdate.toFirestoreDictionary()
-        db.collection("reservations").document(reservationToUpdate.id.uuidString).setData(updatedReservationData, merge: true) { error in
-            // Check for errors
-            if error == nil {
-                // Get the new data
-                //                self.getData()
-            }
-        }
-    }
+ 
 }
 
