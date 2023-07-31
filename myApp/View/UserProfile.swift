@@ -11,7 +11,7 @@ import SwiftUI
 
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var viewModel: AuthManager
    
     
     @State private var showAlert = false

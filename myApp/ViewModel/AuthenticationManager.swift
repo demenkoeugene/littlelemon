@@ -21,13 +21,12 @@ protocol AuthenticationFormProtocol {
 var accessSignInWithGoogle = false
 
 @MainActor
-class AuthViewModel: ObservableObject {
+class AuthManager: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     @Published var errorLogIn: Error?
     @Published var showAlert = false
    
-    
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -119,7 +118,7 @@ enum AuthenticationError: Error {
     case noRootViewController
 }
 
-extension AuthViewModel {
+extension AuthManager {
    
     func signInWithGoogle() async throws {
         guard let clientID = FirebaseApp.app()?.options.clientID else {

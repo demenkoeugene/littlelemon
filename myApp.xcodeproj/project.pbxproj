@@ -36,6 +36,8 @@
 		F67179692A6591F900A37402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F67179682A6591F900A37402 /* GoogleService-Info.plist */; };
 		F67311392A6342B5009657C5 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67311382A6342B5009657C5 /* ForgotPasswordView.swift */; };
 		F67B55BE2A7677E900318D87 /* ReservationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B55BD2A7677E900318D87 /* ReservationCard.swift */; };
+		F67B55CC2A785B7D00318D87 /* LittleLemonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B55CB2A785B7D00318D87 /* LittleLemonTest.swift */; };
+		F67B56072A785E2E00318D87 /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67B56062A785E2E00318D87 /* FirebaseFirestore.framework */; };
 		F683B48D2A7145D20050DE86 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683B48C2A7145D20050DE86 /* FirestoreManager.swift */; };
 		F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */; };
 		F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */; };
@@ -46,6 +48,16 @@
 		F6C8CA0F2A66A54C001FA531 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8CA0E2A66A54C001FA531 /* Utilities.swift */; };
 		F6C8CA112A6723D3001FA531 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8CA102A6723D3001FA531 /* UserProfile.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F67B55CD2A785B7D00318D87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F62FC8252A326FE3000868D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F62FC82C2A326FE3000868D1;
+			remoteInfo = myApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00B36227F23598803E83691C /* Pods-myApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myApp.debug.xcconfig"; path = "Target Support Files/Pods-myApp/Pods-myApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +91,36 @@
 		F67179682A6591F900A37402 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F67311382A6342B5009657C5 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		F67B55BD2A7677E900318D87 /* ReservationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCard.swift; sourceTree = "<group>"; };
+		F67B55C12A78595B00318D87 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F67B55C92A785B7D00318D87 /* LittleLemonTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleLemonTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55CB2A785B7D00318D87 /* LittleLemonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonTest.swift; sourceTree = "<group>"; };
+		F67B55D22A785D2D00318D87 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55D42A785D2D00318D87 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55D62A785D2D00318D87 /* FirebaseFirestoreSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestoreSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55D82A785DAD00318D87 /* Pods_myApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_myApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55DA2A785DF300318D87 /* absl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = absl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55DC2A785DF300318D87 /* openssl_grpc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = openssl_grpc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55DE2A785DF300318D87 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
+		F67B55E02A785DF300318D87 /* FirebaseAppCheckInterop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAppCheckInterop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55E22A785DF300318D87 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55E42A785DF300318D87 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55E62A785DF300318D87 /* FirebaseCoreExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCoreExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55E82A785DF400318D87 /* FirebaseCoreInternal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCoreInternal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55EA2A785DF400318D87 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55EC2A785DF400318D87 /* FirebaseFirestoreSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestoreSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55EE2A785DF400318D87 /* FirebaseInstallations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseInstallations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55F02A785DF400318D87 /* FirebaseSharedSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseSharedSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55F22A785DF400318D87 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		F67B55F42A785DF400318D87 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
+		F67B55F62A785DF400318D87 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55F82A785DF400318D87 /* grpcpp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = grpcpp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55FA2A785DF400318D87 /* grpc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = grpc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55FC2A785DF400318D87 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B55FE2A785DF400318D87 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B56002A785DF400318D87 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B56022A785DF400318D87 /* Pods_myApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_myApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B56042A785DF400318D87 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F67B56062A785E2E00318D87 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F683B48C2A7145D20050DE86 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		F6BDE21E2A366CBC00FCE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -102,12 +144,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F67B55C62A785B7D00318D87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F67B56072A785E2E00318D87 /* FirebaseFirestore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		6E5FC0994B65419D71F506E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F67B56062A785E2E00318D87 /* FirebaseFirestore.framework */,
+				F67B55DA2A785DF300318D87 /* absl.framework */,
+				F67B55DC2A785DF300318D87 /* openssl_grpc.framework */,
+				F67B55DE2A785DF300318D87 /* FirebaseAnalytics.xcframework */,
+				F67B55E02A785DF300318D87 /* FirebaseAppCheckInterop.framework */,
+				F67B55E22A785DF300318D87 /* FirebaseAuth.framework */,
+				F67B55E42A785DF300318D87 /* FirebaseCore.framework */,
+				F67B55E62A785DF300318D87 /* FirebaseCoreExtension.framework */,
+				F67B55E82A785DF400318D87 /* FirebaseCoreInternal.framework */,
+				F67B55EA2A785DF400318D87 /* FirebaseFirestore.framework */,
+				F67B55EC2A785DF400318D87 /* FirebaseFirestoreSwift.framework */,
+				F67B55EE2A785DF400318D87 /* FirebaseInstallations.framework */,
+				F67B55F02A785DF400318D87 /* FirebaseSharedSwift.framework */,
+				F67B55F22A785DF400318D87 /* GoogleAppMeasurement.xcframework */,
+				F67B55F42A785DF400318D87 /* GoogleAppMeasurementIdentitySupport.xcframework */,
+				F67B55F62A785DF400318D87 /* GoogleUtilities.framework */,
+				F67B55F82A785DF400318D87 /* grpcpp.framework */,
+				F67B55FA2A785DF400318D87 /* grpc.framework */,
+				F67B55FC2A785DF400318D87 /* GTMSessionFetcher.framework */,
+				F67B55FE2A785DF400318D87 /* leveldb.framework */,
+				F67B56002A785DF400318D87 /* nanopb.framework */,
+				F67B56022A785DF400318D87 /* Pods_myApp.framework */,
+				F67B56042A785DF400318D87 /* FBLPromises.framework */,
+				F67B55D82A785DAD00318D87 /* Pods_myApp.framework */,
+				F67B55D22A785D2D00318D87 /* FirebaseCore.framework */,
+				F67B55D42A785D2D00318D87 /* FirebaseFirestore.framework */,
+				F67B55D62A785D2D00318D87 /* FirebaseFirestoreSwift.framework */,
+				F67B55C12A78595B00318D87 /* XCTest.framework */,
 				F63CF4032A5CA3550034EE93 /* FirebaseAuth.framework */,
 				0C9BFD24DBE0AF1D8B0A08B0 /* Pods_myApp.framework */,
 			);
@@ -150,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				F62FC82F2A326FE3000868D1 /* myApp */,
+				F67B55CA2A785B7D00318D87 /* LittleLemonTest */,
 				F62FC82E2A326FE3000868D1 /* Products */,
 				776D7A015FD1A8A46FCAE46E /* Pods */,
 				6E5FC0994B65419D71F506E4 /* Frameworks */,
@@ -160,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				F62FC82D2A326FE3000868D1 /* myApp.app */,
+				F67B55C92A785B7D00318D87 /* LittleLemonTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,6 +322,14 @@
 			path = Restaraunt;
 			sourceTree = "<group>";
 		};
+		F67B55CA2A785B7D00318D87 /* LittleLemonTest */ = {
+			isa = PBXGroup;
+			children = (
+				F67B55CB2A785B7D00318D87 /* LittleLemonTest.swift */,
+			);
+			path = LittleLemonTest;
+			sourceTree = "<group>";
+		};
 		F6BDE2222A36705900FCE795 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +386,24 @@
 			productReference = F62FC82D2A326FE3000868D1 /* myApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F67B55C82A785B7D00318D87 /* LittleLemonTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F67B55CF2A785B7D00318D87 /* Build configuration list for PBXNativeTarget "LittleLemonTest" */;
+			buildPhases = (
+				F67B55C52A785B7D00318D87 /* Sources */,
+				F67B55C62A785B7D00318D87 /* Frameworks */,
+				F67B55C72A785B7D00318D87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F67B55CE2A785B7D00318D87 /* PBXTargetDependency */,
+			);
+			name = LittleLemonTest;
+			productName = LittleLemonTest;
+			productReference = F67B55C92A785B7D00318D87 /* LittleLemonTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -310,6 +416,10 @@
 				TargetAttributes = {
 					F62FC82C2A326FE3000868D1 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					F67B55C82A785B7D00318D87 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = F62FC82C2A326FE3000868D1;
 					};
 				};
 			};
@@ -330,6 +440,7 @@
 			projectRoot = "";
 			targets = (
 				F62FC82C2A326FE3000868D1 /* myApp */,
+				F67B55C82A785B7D00318D87 /* LittleLemonTest */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +455,13 @@
 				F62FC8352A326FE3000868D1 /* Assets.xcassets in Resources */,
 				F6BDE2242A3670AA00FCE795 /* Karla-Regular.ttf in Resources */,
 				F67179692A6591F900A37402 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F67B55C72A785B7D00318D87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +547,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F67B55C52A785B7D00318D87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F67B55CC2A785B7D00318D87 /* LittleLemonTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F67B55CE2A785B7D00318D87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F62FC82C2A326FE3000868D1 /* myApp */;
+			targetProxy = F67B55CD2A785B7D00318D87 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F62FC8392A326FE3000868D1 /* Debug */ = {
@@ -608,6 +742,42 @@
 			};
 			name = Release;
 		};
+		F67B55D02A785B7D00318D87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9495ZGT5QK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kub.LittleLemonTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/myApp";
+			};
+			name = Debug;
+		};
+		F67B55D12A785B7D00318D87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9495ZGT5QK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kub.LittleLemonTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/myApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -625,6 +795,15 @@
 			buildConfigurations = (
 				F62FC83C2A326FE3000868D1 /* Debug */,
 				F62FC83D2A326FE3000868D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F67B55CF2A785B7D00318D87 /* Build configuration list for PBXNativeTarget "LittleLemonTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F67B55D02A785B7D00318D87 /* Debug */,
+				F67B55D12A785B7D00318D87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

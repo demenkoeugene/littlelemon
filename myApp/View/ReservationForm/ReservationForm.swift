@@ -21,7 +21,7 @@ struct ReservationForm: View {
     @State var customerName = ""
     @State var customerPhoneNumber = ""
     @State var customerEmail = ""
-    @EnvironmentObject var viewModelAuth: AuthViewModel
+    @EnvironmentObject var viewModelAuth: AuthManager
     
     // this environment variable stores the presentation mode status
     // of this view. This will be used to dismiss this view when

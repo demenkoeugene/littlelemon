@@ -10,7 +10,7 @@ import SwiftUI
 struct SignInView: View{
     @State private var email = ""
     @State private var password = ""
-    @EnvironmentObject private var authViewModel: AuthViewModel
+    @EnvironmentObject private var authViewModel: AuthManager
     
     @State var isPressed: Bool = false
     @State private var isLoading = false
@@ -20,7 +20,7 @@ struct SignInView: View{
             NavigationStack{
                 Spacer()
                 Spacer()
-                Logo()
+                Logo(nameImage: "logo2", widthLogo: 200, heightLogo: 55)
                 Text("Sign In")
                     .font(.custom("Markazi Text", size: 44))
                 Group{
@@ -173,7 +173,7 @@ struct SignUpView: View {
     @State private var password = ""
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject private var authViewModel: AuthViewModel
+    @EnvironmentObject private var authViewModel: AuthManager
     @State private var isLoading = false
     @State private var isPressed: Bool = false
     @State private var isSuccess = false
@@ -182,7 +182,7 @@ struct SignUpView: View {
             NavigationStack{
                 Spacer()
                 Spacer()
-                Logo()
+                Logo(nameImage: "logo2", widthLogo: 200, heightLogo: 55)
                 Text("Sign Up")
                     .font(.custom("Markazi Text", size: 44))
                 Group {
@@ -293,11 +293,15 @@ struct ButtonColor: ButtonStyle {
 }
 
 struct Logo: View{
+    var nameImage: String
+    var widthLogo: CGFloat
+    var heightLogo: CGFloat
+    
     var body: some View{
-        Image("logo2")
+        Image(nameImage)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 200, height: 55)
+            .frame(width: widthLogo, height: heightLogo)
     }
 }
 

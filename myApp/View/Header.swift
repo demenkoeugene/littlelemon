@@ -10,7 +10,7 @@ import SwiftUI
 struct Header: View {
     var body: some View{
         HStack{
-            Image("logo2")
+            Logo(nameImage: "logo2", widthLogo: 180, heightLogo: 50)
                 .padding(.bottom, 10)
         }
     }

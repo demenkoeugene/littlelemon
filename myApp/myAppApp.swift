@@ -32,7 +32,7 @@ struct myAppApp: App {
     
 
     
-    @StateObject var viewmodel = AuthViewModel()
+    @StateObject var viewmodel = AuthManager()
     var body: some Scene {
         WindowGroup {
             SplashScreenView()

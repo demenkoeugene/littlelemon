@@ -12,7 +12,7 @@ struct SplashScreenView: View {
     @State private var size = 1.0
     @State private var opacity = 0.5
     
-    @EnvironmentObject private var viewModel: AuthViewModel
+    @EnvironmentObject private var viewModel: AuthManager
     @EnvironmentObject private var model: FirestoreManager
     
     var body: some View {
@@ -22,12 +22,12 @@ struct SplashScreenView: View {
         }else{
             VStack{
                 VStack{
-                    Logo()
+                    Logo(nameImage: "header_logo", widthLogo: 200, heightLogo: 55)
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
                 .onAppear{
-                    withAnimation(.easeIn(duration: 1.2)){
+                    withAnimation(.easeIn(duration: 1.3)){
                         self.size = 1.2
                         self.opacity = 1.0
                     }

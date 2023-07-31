@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ForgotPasswordView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject private var authViewModel: AuthViewModel
+    @EnvironmentObject private var authViewModel: AuthManager
     @State private var email = ""
     @State var isPressed: Bool = false
     var body: some View {
         NavigationStack{
             Group{
                 Spacer()
-                Logo()
+                Logo(nameImage: "logo2", widthLogo: 200, heightLogo: 55)
                 Text("Reset Password")
                     .font(.custom("Markazi Text", size: 44))
                 TextField("Email", text: $email)

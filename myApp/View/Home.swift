@@ -10,7 +10,7 @@ import SwiftUI
 struct Home: View {
     let persistence = PersistenceController.shared
     
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var viewModel: AuthManager
     @StateObject var model = FirestoreManager()
     
     var body: some View {

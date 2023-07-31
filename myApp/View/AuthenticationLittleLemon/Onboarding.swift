@@ -15,7 +15,7 @@ struct Onboarding: View {
     @State private var isFormView = false
    
 //    @StateObject var model = Model()
-    @EnvironmentObject private var viewModel: AuthViewModel
+    @EnvironmentObject private var viewModel: AuthManager
     
     var body: some View {
         

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReservationView: View {
     @ObservedObject var viewmodelReservation: FirestoreManager
-    @ObservedObject var viewModelAuth = AuthViewModel()
+    @ObservedObject var viewModelAuth = AuthManager()
     
     @State private var isLoading = true
     @State private var showOverloadMessage = false // New state variable to control message visibility
