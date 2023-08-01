@@ -34,14 +34,15 @@ What I have disassembled and implemented
 
 ## Menu Use Case 
 <div align="center">
+     <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/menuCase.gif" width = "40%">
+</div>
+
+
+# Preview. Release V 1.0.0
+<div align="center">
      <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/2023-06-17%2000.24.33.gif?raw=true" width = "40%">
 </div>
 
-# Preview. Release V 1.0.0
-
-<div align="center">
-     <img src = "https://github.com/demenkoeugene/littlelemon/blob/main/menuCase.gif" width = "40%">
-</div>
 
 # Features
 <ul>
