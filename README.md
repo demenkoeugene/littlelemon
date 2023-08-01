@@ -9,14 +9,14 @@ I decided to continue developing the project after completing the course and pra
 
 # Features of V 2.0.0 release
 So in this version, I learned how to use the Firebase platform.
-Here are some of the things I learned and implemented during this project:
-🔸 I learned how to work with the Firebase platform, which allowed me to enable features such as authentication and data storage.
-🔸 I successfully connected libraries and dependencies using CocoaPods and Swift Package Manager.
-🔸 Implemented authentication using FirebaseAuth, which allowed users to log in via email and Google Auth.
-🔸 Added important features such as "forgot password", "delete account" and "log out", as well as saving profile photos.
-🔸 Worked closely with Firestore to implement the "table reservation" feature, which allows users to save and cancel reservations.
-🔸 I wrote simple unit tests to make sure the app was working properly.
-🔸 I added Splash View to improve the user experience.
+Here are some of the things I learned and implemented during this project:<br>
+🔸 I learned how to work with the Firebase platform, which allowed me to enable features such as authentication and data storage.<br>
+🔸 I successfully connected libraries and dependencies using CocoaPods and Swift Package Manager.<br>
+🔸 Implemented authentication using FirebaseAuth, which allowed users to log in via email and Google Auth.<br>
+🔸 Added important features such as "forgot password", "delete account" and "log out", as well as saving profile photos.<br>
+🔸 Worked closely with Firestore to implement the "table reservation" feature, which allows users to save and cancel reservations.<br>
+🔸 I wrote simple unit tests to make sure the app was working properly.<br>
+🔸 I added Splash View to improve the user experience.<br>
 
 
 # Preview. V 2.0.0
