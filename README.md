@@ -16,6 +16,7 @@ What I have disassembled and implemented
      <li>Adding the functions "<b>forgot password</b>", "<b>delete account</b>", and "<b>log out</b>". As well as storing <b>profile photos</b></li>
      <li>Сlose work with <b>Firestore.</b> Adding the "table reservation" feature from previous projects. Implemented the function of saving the entered data to the <b>Firestore NoSQL document database</b>, <b>displaying</b> it in the view, and <b>canceling</b> the reservation.</li>
      <li>Also writing a very simple <b>unit test</b>.</li>
+     <li>Add Splash View.</li>
      <li>During the development, I learned more about how **the data flow works** in SwiftUI. Also, work with network requests. I used asynchronously in the code</li>
 </ul>
 
