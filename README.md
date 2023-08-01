@@ -11,7 +11,7 @@ I decided to continue developing the project after completing the course and pra
 So in this version, I learned how to use the Firebase platform.
 What I have disassembled and implemented
 <ul>
-     <li>Connecting libraries and dependencies using <b>Cocoa Pods** and The <b>Swift Package Manage**</li>
+     <li>Connecting libraries and dependencies using <b>Cocoa Pods</b> and The <b>Swift Package Manage</b></li>
      <li>Implementing authentication using <b>FirebaseAuth.</b> Implementation of login via <b>Email</b> and <b>Google Auth</b>.</li>
      <li>Adding the functions "<b>forgot password</b>", "<b>delete account</b>", and "<b>log out</b>". As well as storing <b>profile photos</b></li>
      <li>Сlose work with <b>Firestore.</b> Adding the "table reservation" feature from previous projects. Implemented the function of saving the entered data to the <b>Firestore NoSQL document database</b>, <b>displaying</b> it in the view, and <b>canceling</b> the reservation.</li>
