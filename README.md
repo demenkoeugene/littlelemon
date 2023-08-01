@@ -11,12 +11,12 @@ I decided to continue developing the project after completing the course and pra
 So in this version, I learned how to use the Firebase platform.
 What I have disassembled and implemented
 <ul>
-     <li>Connecting libraries and dependencies using **Cocoa Pods** and The **Swift Package Manage**</li>
-     <li>Implementing authentication using **FirebaseAuth.** Implementation of login via **Email** and **Google Auth**.</li>
-     <li>Adding the functions "**forgot password**", "**delete account**", and "**log out**". As well as storing **profile photos**</li>
-     <li>Сlose work with **Firestore.** Adding the "table reservation" feature from previous projects. Implemented the function of saving the entered data to the **Firestore NoSQL document database**, **displaying** it in the view, and **canceling** the reservation.</li>
-     <li>Also writing a very simple unit test.</li>
-     <li>During the development, I learned more about how **the data flow works** in SwiftUI. Also, work with network requests. I used asynchronous in the code</li>
+     <li>Connecting libraries and dependencies using <b>Cocoa Pods** and The <b>Swift Package Manage**</li>
+     <li>Implementing authentication using <b>FirebaseAuth.</b> Implementation of login via <b>Email</b> and <b>Google Auth</b>.</li>
+     <li>Adding the functions "<b>forgot password</b>", "<b>delete account</b>", and "<b>log out</b>". As well as storing <b>profile photos</b></li>
+     <li>Сlose work with <b>Firestore.</b> Adding the "table reservation" feature from previous projects. Implemented the function of saving the entered data to the <b>Firestore NoSQL document database</b>, <b>displaying</b> it in the view, and <b>canceling</b> the reservation.</li>
+     <li>Also writing a very simple <b>unit test</b>.</li>
+     <li>During the development, I learned more about how **the data flow works** in SwiftUI. Also, work with network requests. I used asynchronously in the code</li>
 </ul>
 
 # Preview. V 2.0.0
