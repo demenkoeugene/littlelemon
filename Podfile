@@ -18,3 +18,6 @@ target 'myApp' do
 	pod 'FirebaseFirestore'
 	pod 'FirebaseFirestoreSwift'
 end
+
+
+

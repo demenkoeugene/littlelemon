@@ -19,6 +19,10 @@
 		F62FC8382A326FE3000868D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */; };
 		F63CF40D2A5D6FBF0034EE93 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63CF40C2A5D6FBF0034EE93 /* AuthenticationManager.swift */; };
 		F640E3DD2A60A8E8006BDE55 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640E3DC2A60A8E8006BDE55 /* AuthView.swift */; };
+		F64270272A786024002D8AAC /* LittleLemonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64270262A786024002D8AAC /* LittleLemonTest.swift */; };
+		F64270302A7861FC002D8AAC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F642702F2A7861FC002D8AAC /* GoogleSignIn */; };
+		F64270322A7861FC002D8AAC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F64270312A7861FC002D8AAC /* GoogleSignInSwift */; settings = {ATTRIBUTES = (Required, ); }; };
+		F64270342A786205002D8AAC /* Pods_myApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64270332A786205002D8AAC /* Pods_myApp.framework */; };
 		F662FBE82A3C7D5B00EB8C04 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE72A3C7D5B00EB8C04 /* Header.swift */; };
 		F662FBEA2A3C7D8000EB8C04 /* MenuBreakdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */; };
 		F662FBED2A3C7F4500EB8C04 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBEC2A3C7F4500EB8C04 /* ViewModel.swift */; };
@@ -36,8 +40,6 @@
 		F67179692A6591F900A37402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F67179682A6591F900A37402 /* GoogleService-Info.plist */; };
 		F67311392A6342B5009657C5 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67311382A6342B5009657C5 /* ForgotPasswordView.swift */; };
 		F67B55BE2A7677E900318D87 /* ReservationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B55BD2A7677E900318D87 /* ReservationCard.swift */; };
-		F67B55CC2A785B7D00318D87 /* LittleLemonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B55CB2A785B7D00318D87 /* LittleLemonTest.swift */; };
-		F67B56072A785E2E00318D87 /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67B56062A785E2E00318D87 /* FirebaseFirestore.framework */; };
 		F683B48D2A7145D20050DE86 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683B48C2A7145D20050DE86 /* FirestoreManager.swift */; };
 		F6A2C0B42A34FDFA005E31D4 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A2C0B32A34FDFA005E31D4 /* Onboarding.swift */; };
 		F6BDE2202A366E8000FCE795 /* MarkaziText2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6BDE21F2A366E8000FCE795 /* MarkaziText2.ttf */; };
@@ -50,7 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F67B55CD2A785B7D00318D87 /* PBXContainerItemProxy */ = {
+		F64270282A786024002D8AAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F62FC8252A326FE3000868D1 /* Project object */;
 			proxyType = 1;
@@ -76,6 +78,10 @@
 		F63CF4032A5CA3550034EE93 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F63CF40C2A5D6FBF0034EE93 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		F640E3DC2A60A8E8006BDE55 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		F64270242A786021002D8AAC /* LittleLemonTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleLemonTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64270262A786024002D8AAC /* LittleLemonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonTest.swift; sourceTree = "<group>"; };
+		F642702D2A7860A1002D8AAC /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64270332A786205002D8AAC /* Pods_myApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_myApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F662FBE72A3C7D5B00EB8C04 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBreakdown.swift; sourceTree = "<group>"; };
 		F662FBEC2A3C7F4500EB8C04 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -92,8 +98,6 @@
 		F67311382A6342B5009657C5 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		F67B55BD2A7677E900318D87 /* ReservationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCard.swift; sourceTree = "<group>"; };
 		F67B55C12A78595B00318D87 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F67B55C92A785B7D00318D87 /* LittleLemonTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleLemonTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F67B55CB2A785B7D00318D87 /* LittleLemonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonTest.swift; sourceTree = "<group>"; };
 		F67B55D22A785D2D00318D87 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67B55D42A785D2D00318D87 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67B55D62A785D2D00318D87 /* FirebaseFirestoreSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestoreSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,11 +148,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F67B55C62A785B7D00318D87 /* Frameworks */ = {
+		F64270212A786021002D8AAC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F67B56072A785E2E00318D87 /* FirebaseFirestore.framework in Frameworks */,
+				F64270322A7861FC002D8AAC /* GoogleSignInSwift in Frameworks */,
+				F64270342A786205002D8AAC /* Pods_myApp.framework in Frameworks */,
+				F64270302A7861FC002D8AAC /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +164,8 @@
 		6E5FC0994B65419D71F506E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F64270332A786205002D8AAC /* Pods_myApp.framework */,
+				F642702D2A7860A1002D8AAC /* FirebaseFirestore.framework */,
 				F67B56062A785E2E00318D87 /* FirebaseFirestore.framework */,
 				F67B55DA2A785DF300318D87 /* absl.framework */,
 				F67B55DC2A785DF300318D87 /* openssl_grpc.framework */,
@@ -228,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				F62FC82F2A326FE3000868D1 /* myApp */,
-				F67B55CA2A785B7D00318D87 /* LittleLemonTest */,
+				F64270252A786024002D8AAC /* LittleLemonTest */,
 				F62FC82E2A326FE3000868D1 /* Products */,
 				776D7A015FD1A8A46FCAE46E /* Pods */,
 				6E5FC0994B65419D71F506E4 /* Frameworks */,
@@ -239,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				F62FC82D2A326FE3000868D1 /* myApp.app */,
-				F67B55C92A785B7D00318D87 /* LittleLemonTest.xctest */,
+				F64270242A786021002D8AAC /* LittleLemonTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,6 +275,14 @@
 				F62FC8372A326FE3000868D1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F64270252A786024002D8AAC /* LittleLemonTest */ = {
+			isa = PBXGroup;
+			children = (
+				F64270262A786024002D8AAC /* LittleLemonTest.swift */,
+			);
+			path = LittleLemonTest;
 			sourceTree = "<group>";
 		};
 		F648B44B2A5ED19400D231A9 /* AuthenticationLittleLemon */ = {
@@ -320,14 +336,6 @@
 				F668B8ED2A6B112600E6F5C6 /* RestaurantView.swift */,
 			);
 			path = Restaraunt;
-			sourceTree = "<group>";
-		};
-		F67B55CA2A785B7D00318D87 /* LittleLemonTest */ = {
-			isa = PBXGroup;
-			children = (
-				F67B55CB2A785B7D00318D87 /* LittleLemonTest.swift */,
-			);
-			path = LittleLemonTest;
 			sourceTree = "<group>";
 		};
 		F6BDE2222A36705900FCE795 /* font */ = {
@@ -386,22 +394,26 @@
 			productReference = F62FC82D2A326FE3000868D1 /* myApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F67B55C82A785B7D00318D87 /* LittleLemonTest */ = {
+		F64270232A786021002D8AAC /* LittleLemonTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F67B55CF2A785B7D00318D87 /* Build configuration list for PBXNativeTarget "LittleLemonTest" */;
+			buildConfigurationList = F642702A2A786027002D8AAC /* Build configuration list for PBXNativeTarget "LittleLemonTest" */;
 			buildPhases = (
-				F67B55C52A785B7D00318D87 /* Sources */,
-				F67B55C62A785B7D00318D87 /* Frameworks */,
-				F67B55C72A785B7D00318D87 /* Resources */,
+				F64270202A786021002D8AAC /* Sources */,
+				F64270212A786021002D8AAC /* Frameworks */,
+				F64270222A786021002D8AAC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F67B55CE2A785B7D00318D87 /* PBXTargetDependency */,
+				F64270292A786024002D8AAC /* PBXTargetDependency */,
 			);
 			name = LittleLemonTest;
+			packageProductDependencies = (
+				F642702F2A7861FC002D8AAC /* GoogleSignIn */,
+				F64270312A7861FC002D8AAC /* GoogleSignInSwift */,
+			);
 			productName = LittleLemonTest;
-			productReference = F67B55C92A785B7D00318D87 /* LittleLemonTest.xctest */;
+			productReference = F64270242A786021002D8AAC /* LittleLemonTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -417,7 +429,7 @@
 					F62FC82C2A326FE3000868D1 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
-					F67B55C82A785B7D00318D87 = {
+					F64270232A786021002D8AAC = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = F62FC82C2A326FE3000868D1;
 					};
@@ -440,7 +452,7 @@
 			projectRoot = "";
 			targets = (
 				F62FC82C2A326FE3000868D1 /* myApp */,
-				F67B55C82A785B7D00318D87 /* LittleLemonTest */,
+				F64270232A786021002D8AAC /* LittleLemonTest */,
 			);
 		};
 /* End PBXProject section */
@@ -458,7 +470,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F67B55C72A785B7D00318D87 /* Resources */ = {
+		F64270222A786021002D8AAC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -547,21 +559,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F67B55C52A785B7D00318D87 /* Sources */ = {
+		F64270202A786021002D8AAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F67B55CC2A785B7D00318D87 /* LittleLemonTest.swift in Sources */,
+				F64270272A786024002D8AAC /* LittleLemonTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F67B55CE2A785B7D00318D87 /* PBXTargetDependency */ = {
+		F64270292A786024002D8AAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F62FC82C2A326FE3000868D1 /* myApp */;
-			targetProxy = F67B55CD2A785B7D00318D87 /* PBXContainerItemProxy */;
+			targetProxy = F64270282A786024002D8AAC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -662,6 +674,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -742,14 +755,16 @@
 			};
 			name = Release;
 		};
-		F67B55D02A785B7D00318D87 /* Debug */ = {
+		F642702B2A786027002D8AAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9495ZGT5QK;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = " $(inherited)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kub.LittleLemonTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -760,14 +775,16 @@
 			};
 			name = Debug;
 		};
-		F67B55D12A785B7D00318D87 /* Release */ = {
+		F642702C2A786027002D8AAC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9495ZGT5QK;
+				FRAMEWORK_SEARCH_PATHS = " $(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = " $(inherited)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kub.LittleLemonTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -799,11 +816,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F67B55CF2A785B7D00318D87 /* Build configuration list for PBXNativeTarget "LittleLemonTest" */ = {
+		F642702A2A786027002D8AAC /* Build configuration list for PBXNativeTarget "LittleLemonTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F67B55D02A785B7D00318D87 /* Debug */,
-				F67B55D12A785B7D00318D87 /* Release */,
+				F642702B2A786027002D8AAC /* Debug */,
+				F642702C2A786027002D8AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -822,6 +839,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F642702F2A7861FC002D8AAC /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F67179632A6584C500A37402 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		F64270312A7861FC002D8AAC /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F67179632A6584C500A37402 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		F67179642A6584C500A37402 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F67179632A6584C500A37402 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
