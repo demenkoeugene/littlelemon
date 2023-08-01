@@ -18,6 +18,7 @@ Here are some of the things I learned and implemented during this project:<br>
 🔸 I wrote simple unit tests to make sure the app was working properly.<br>
 🔸 I added Splash View to improve the user experience.<br>
 
+Working on this project gave me a better understanding of the data flow in SwiftUI and how to handle network requests asynchronously.
 
 # Preview. V 2.0.0
 
