@@ -9,16 +9,15 @@ I decided to continue developing the project after completing the course and pra
 
 # Features of V 2.0.0 release
 So in this version, I learned how to use the Firebase platform.
-What I have disassembled and implemented
-<ul>
-     <li>Connecting libraries and dependencies using <b>Cocoa Pods</b> and The <b>Swift Package Manage</b></li>
-     <li>Implementing authentication using <b>FirebaseAuth.</b> Implementation of login via <b>Email</b> and <b>Google Auth</b>.</li>
-     <li>Adding the functions "<b>forgot password</b>", "<b>delete account</b>", and "<b>log out</b>". As well as storing <b>profile photos</b></li>
-     <li>Сlose work with <b>Firestore.</b> Adding the "table reservation" feature from previous projects. Implemented the function of saving the entered data to the <b>Firestore NoSQL document database</b>, <b>displaying</b> it in the view, and <b>canceling</b> the reservation.</li>
-     <li>Also writing a very simple <b>unit test</b>.</li>
-     <li>Add Splash View.</li>
-     <li>During the development, I learned more about how **the data flow works** in SwiftUI. Also, work with network requests. I used asynchronously in the code</li>
-</ul>
+Here are some of the things I learned and implemented during this project:
+🔸 I learned how to work with the Firebase platform, which allowed me to enable features such as authentication and data storage.
+🔸 I successfully connected libraries and dependencies using CocoaPods and Swift Package Manager.
+🔸 Implemented authentication using FirebaseAuth, which allowed users to log in via email and Google Auth.
+🔸 Added important features such as "forgot password", "delete account" and "log out", as well as saving profile photos.
+🔸 Worked closely with Firestore to implement the "table reservation" feature, which allows users to save and cancel reservations.
+🔸 I wrote simple unit tests to make sure the app was working properly.
+🔸 I added Splash View to improve the user experience.
+
 
 # Preview. V 2.0.0
 
