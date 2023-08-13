@@ -15,6 +15,7 @@ struct UserProfile: View {
    
     
     @State private var showAlert = false
+    @State private var showAlertLogOut = false
     var body: some View {
        
         
@@ -127,7 +128,16 @@ struct UserProfile: View {
                     }
                     
                     Button("\( Image(systemName: "door.left.hand.open")) Log out"){
-                        viewModel.signOut()
+                        showAlertLogOut = true
+                    }
+                    .alert(isPresented: $showAlertLogOut) {
+                        Alert(
+                            title: Text("Do you really want to log out?"),
+                            primaryButton: .destructive(Text("Ok")) {
+                                viewModel.signOut()
+                            },
+                            secondaryButton: .cancel()
+                        )
                     }
                     .listRowSeparator(.hidden)
                     .foregroundColor(.red)
