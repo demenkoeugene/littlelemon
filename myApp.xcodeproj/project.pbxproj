@@ -22,7 +22,6 @@
 		F64270272A786024002D8AAC /* LittleLemonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64270262A786024002D8AAC /* LittleLemonTest.swift */; };
 		F64270302A7861FC002D8AAC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F642702F2A7861FC002D8AAC /* GoogleSignIn */; };
 		F64270322A7861FC002D8AAC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F64270312A7861FC002D8AAC /* GoogleSignInSwift */; settings = {ATTRIBUTES = (Required, ); }; };
-		F64270342A786205002D8AAC /* Pods_myApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64270332A786205002D8AAC /* Pods_myApp.framework */; };
 		F662FBE82A3C7D5B00EB8C04 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE72A3C7D5B00EB8C04 /* Header.swift */; };
 		F662FBEA2A3C7D8000EB8C04 /* MenuBreakdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */; };
 		F662FBED2A3C7F4500EB8C04 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662FBEC2A3C7F4500EB8C04 /* ViewModel.swift */; };
@@ -81,7 +80,6 @@
 		F64270242A786021002D8AAC /* LittleLemonTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleLemonTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64270262A786024002D8AAC /* LittleLemonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonTest.swift; sourceTree = "<group>"; };
 		F642702D2A7860A1002D8AAC /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F64270332A786205002D8AAC /* Pods_myApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_myApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F662FBE72A3C7D5B00EB8C04 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F662FBE92A3C7D8000EB8C04 /* MenuBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBreakdown.swift; sourceTree = "<group>"; };
 		F662FBEC2A3C7F4500EB8C04 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F64270322A7861FC002D8AAC /* GoogleSignInSwift in Frameworks */,
-				F64270342A786205002D8AAC /* Pods_myApp.framework in Frameworks */,
 				F64270302A7861FC002D8AAC /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,7 +161,6 @@
 		6E5FC0994B65419D71F506E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F64270332A786205002D8AAC /* Pods_myApp.framework */,
 				F642702D2A7860A1002D8AAC /* FirebaseFirestore.framework */,
 				F67B56062A785E2E00318D87 /* FirebaseFirestore.framework */,
 				F67B55DA2A785DF300318D87 /* absl.framework */,
@@ -187,9 +183,7 @@
 				F67B55FC2A785DF400318D87 /* GTMSessionFetcher.framework */,
 				F67B55FE2A785DF400318D87 /* leveldb.framework */,
 				F67B56002A785DF400318D87 /* nanopb.framework */,
-				F67B56022A785DF400318D87 /* Pods_myApp.framework */,
 				F67B56042A785DF400318D87 /* FBLPromises.framework */,
-				F67B55D82A785DAD00318D87 /* Pods_myApp.framework */,
 				F67B55D22A785D2D00318D87 /* FirebaseCore.framework */,
 				F67B55D42A785D2D00318D87 /* FirebaseFirestore.framework */,
 				F67B55D62A785D2D00318D87 /* FirebaseFirestoreSwift.framework */,

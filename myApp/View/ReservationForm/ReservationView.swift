@@ -21,7 +21,6 @@ struct ReservationView: View {
         let reservationDate = viewmodelReservation.reservation.reservationDate
         
         VStack{
-            
             Header()
             ScrollView {
                 VStack{

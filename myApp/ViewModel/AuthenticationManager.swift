@@ -112,6 +112,8 @@ class AuthManager: ObservableObject {
     }
 }
 
+
+
 enum AuthenticationError: Error {
     case tokenError(message: String)
     case defaultError(message: String)

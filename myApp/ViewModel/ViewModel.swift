@@ -57,7 +57,7 @@ struct MenuHelpers {
         }
         
         let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let data = data {
                 do {
                     let decoder = JSONDecoder()

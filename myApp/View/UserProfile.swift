@@ -12,15 +12,15 @@ import SwiftUI
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var viewModel: AuthManager
-   
+    
     
     @State private var showAlert = false
     @State private var showAlertLogOut = false
     var body: some View {
-       
+        
         
         if let user = viewModel.currentUser {
-           
+            
             VStack{
                 Header()
                 VStack(alignment: .leading){
